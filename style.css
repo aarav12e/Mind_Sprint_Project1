@@ -1,0 +1,70 @@
+/* Reset and basics */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; color:#333; }
+
+/* Navbar */
+nav {
+  background: #16a34a;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav h1 { font-size: 22px; }
+.nav-buttons { display: flex; align-items: center; gap:10px; flex-wrap: wrap; }
+.cart-btn, #logout-btn {
+  background: white; color:#16a34a; border:none; padding:8px 12px; border-radius:8px; font-weight:bold; cursor:pointer;
+  transition:0.3s;
+}
+.cart-btn:hover, #logout-btn:hover { background:#f0f0f0; }
+#search { padding:8px 12px; border-radius:8px; border:none; outline:none; width:180px; }
+
+/* Hero Section */
+header {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg,#bbf7d0,#16a34a);
+  color: #064e3b;
+}
+header h2 { font-size: 2.2rem; margin-bottom:10px; }
+header p { font-size:1.1rem; color:#065f46; }
+
+/* Products Grid */
+.product-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:25px; padding:30px; }
+.card {
+  background:white; border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s; position:relative;
+}
+.card:hover { transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.15); }
+.card img { width:100%; height:180px; object-fit:cover; }
+.card-content { padding:15px; }
+.card-content h3 { font-size:18px; margin-bottom:5px; color:#16a34a; }
+.card-content p { font-size:14px; color:#555; margin-bottom:8px; }
+.price { font-weight:bold; color:#16a34a; }
+.add-btn {
+  width:100%; padding:10px; border:none; border-radius:8px; background:#16a34a; color:white; font-weight:bold; cursor:pointer;
+  transition:0.3s;
+}
+.add-btn:hover { background:#15803d; }
+
+/* Cart Page */
+.cart-item { background:white; border-radius:12px; padding:15px; margin-bottom:15px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+.cart-item h3 { margin-bottom:5px; }
+.cart-total { text-align:right; font-size:1.2rem; font-weight:bold; margin-top:20px; }
+
+/* Login */
+.login-container { max-width:400px; margin:80px auto; background:white; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15); text-align:center; }
+.login-container h2 { margin-bottom:20px; color:#16a34a; }
+.login-container form { display:flex; flex-direction:column; gap:15px; }
+.login-container input { padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px; }
+.login-container button { padding:10px; background:#16a34a; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition:0.3s; }
+.login-container button:hover { background:#15803d; }
+.login-container a { color:#16a34a; text-decoration:none; }
+.login-container a:hover { text-decoration:underline; }
+
+/* Responsive */
+@media(max-width:600px){
+  .nav-buttons { flex-direction: column; gap:5px; }
+  #search { width:100%; }
+}
