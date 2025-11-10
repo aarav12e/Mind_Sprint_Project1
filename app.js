@@ -24,6 +24,8 @@ const products = [
   
 
 
+
+{id:16,name:"PApaya", price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
 ];
 
 // ------------------- Cart Helpers -------------------
