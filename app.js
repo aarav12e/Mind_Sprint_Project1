@@ -14,6 +14,10 @@ const products = [
   {id:7,name:"jack fruit 🥭",price:500,description:"Jackfruit is a giant tropical fruit with a spiky green exterior and sweet, fibrous yellow flesh that tastes like a mix of mango, banana, and pineapple.",image:"./res/jack.jpeg"},
   {id:12,name:"Berry Blue berry 🫐", price:300,description:"Blue Berry A burst of freshness in every bite.Sweet, juicy, and packed with antioxidants, Blue Berry brings natural goodness and vibrant flavor to your day",image:"./res/berry.png"},
   {id:15,name:"cauliflower 🥦",price:70,description:"Fresh and nutritious cauliflower – tasty, healthy, and perfect for every Indian dish",image:"./res/cauliflower.jpeg"},
+  {id:19,name:"elephantfoot",price:200,description:"Elephantfoot yam is a large, starchy tuber resembling an elephant’s foot, widely used as a nutritious tropical vegetable.",image:"./res/elephantfoot.jpeg"},
+  {id:20,name:"plum🍑",price:55,description:"A sweet and juicy fruit with smooth skin and a single pit inside.",image:"./res/plum.png"},
+  {id:18,name:"grapes", price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jepg"},
+  {id:16,name:"PApaya", price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
 ];
 
 // ------------------- Cart Helpers -------------------
