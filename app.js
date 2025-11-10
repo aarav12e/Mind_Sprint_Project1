@@ -13,19 +13,9 @@ const products = [
   {id:11,name:"pumpkin 🎃",price:100,description:" pumpkin is a round, orange fruit with thick skin and seeds inside. It’s used for cooking, decoration, and making pies.",image:"./res/pumpkin.jpeg"},
   {id:12,name:"Berry Blue berry 🫐", price:300,description:"Blue Berry A burst of freshness in every bite.Sweet, juicy, and packed with antioxidants, Blue Berry brings natural goodness and vibrant flavor to your day",image:"./res/berry.png"},
   {id:13,name:"rotten onion 🧅",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
- 
- 
- 
-  
-  
-  
   {id:20,name:"plum🍑",price:55,description:"A sweet and juicy fruit with smooth skin and a single pit inside.",image:"./res/plum.png"},
-  
-  
-
-
-
-{id:16,name:"PApaya", price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
+  {id:18,name:"grapes", price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jepg"},
+  {id:16,name:"PApaya", price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
 ];
 
 // ------------------- Cart Helpers -------------------
