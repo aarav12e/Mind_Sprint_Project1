@@ -5,7 +5,8 @@ const products = [
   {id:3,name:"Curvy Bananas 🍌",price:30,description:"Perfectly ripe bananas with unusual shapes.",image:"./res/banana.jpg"},
   {id:4,name:"Knobby Tomatoes 🍅",price:35,description:"Juicy tomatoes with funny bumps and curves.",image:"./res/tomato.jpg"},
   {id:5,name:"Misshaped Pears 🍐",price:45,description:"Sweet pears that didn’t meet supermarket standards.",image:"./res/pears.jpeg"},
-  {id:6,name:"Odd Strawberries 🍓",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"}
+  {id:6,name:"Odd Strawberries 🍓",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"},
+  {id:9,name:"lady finger 🥒",price:40,description: "quick and tasty lady finger recipe! Easy to cook and super delicious:",image:"./res/ladyfinger.jpeg"},
 ];
 
 // ------------------- Cart Helpers -------------------
