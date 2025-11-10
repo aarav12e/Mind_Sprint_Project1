@@ -1,4 +1,4 @@
-// ------------------- Products -------------------
+  // ------------------- Products -------------------
 const products = [
   {id:1,name:"Ugly Apples 🍎",price:50,description:"Fresh but oddly shaped apples from local farms.",image:"https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80"},
   {id:2,name:"Twisted Carrots 🥕",price:40,description:"Nutrient-rich carrots that look a bit funny.",image:"./res/carrot.jpeg"},
@@ -12,7 +12,16 @@ const products = [
  
  
  
-{id:13,name:"rotten onion 🧅",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
+  {id:13,name:"rotten onion 🧅",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
+  {id:9,name:"lady finger 🥒",price:40,description: "quick and tasty lady finger recipe! Easy to cook and super delicious:",image:"./res/ladyfinger.jpeg"},
+
+
+
+
+  {id:10,name:"Wonky Brinjals 🍆", price:55,description:"Tasty brinjals with quirky shapes, perfect for cooking.", image:"./res/brinjal.jpg"},
+  {id:11,name:"pumpkin 🎃",price:100,description:" pumpkin is a round, orange fruit with thick skin and seeds inside. It’s used for cooking, decoration, and making pies.",image:"./res/pumpkin.jpeg"},
+  {id:7,name:"jack fruit 🥭",price:500,description:"Jackfruit is a giant tropical fruit with a spiky green exterior and sweet, fibrous yellow flesh that tastes like a mix of mango, banana, and pineapple.",image:"./res/jack.jpeg"},
+  {id:12,name:"Berry Blue berry 🫐", price:300,description:"Blue Berry A burst of freshness in every bite.Sweet, juicy, and packed with antioxidants, Blue Berry brings natural goodness and vibrant flavor to your day",image:"./res/berry.png"}
 ];
 
 // ------------------- Cart Helpers -------------------
@@ -28,7 +37,7 @@ function updateCartCount() {
 // ------------------- Toast -------------------
 function showToast(message){
   const toast = document.createElement("div");
-  toast.className = "toast";
+  toast.className = "toast"; 
   toast.innerText = message;
   document.body.appendChild(toast);
   setTimeout(()=> toast.remove(),1500);
