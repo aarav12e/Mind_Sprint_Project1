@@ -11,7 +11,11 @@ const products = [
   {id:9,name:"lady finger 🥒",price:40,description: "quick and tasty lady finger recipe! Easy to cook and super delicious:",image:"./res/ladyfinger.jpeg"},
   {id:10,name:"Wonky Brinjals 🍆", price:55,description:"Tasty brinjals with quirky shapes, perfect for cooking.", image:"./res/brinjal.jpg"},
   {id:11,name:"pumpkin 🎃",price:100,description:" pumpkin is a round, orange fruit with thick skin and seeds inside. It’s used for cooking, decoration, and making pies.",image:"./res/pumpkin.jpeg"},
-  {id:12,name:"Berry Blue berry 🫐", price:300,description:"Blue Berry A burst of freshness in every bite.Sweet, juicy, and packed with antioxidants, Blue Berry brings natural goodness and vibrant flavor to your day",image:"./res/berry.png"},
+   {id:12,name:"Berry Blue berry 🫐", price:300,description:"Blue Berry A burst of freshness in every bite.Sweet, juicy, and packed with antioxidants, Blue Berry brings natural goodness and vibrant flavor to your day",image:"./res/berry.png"},
+
+
+{id:19,name:"elephantfoot",price:200,description:"Elephantfoot yam is a large, starchy tuber resembling an elephant’s foot, widely used as a nutritious tropical vegetable.",image:"./res/elephantfoot.jpeg"},
+
   {id:13,name:"rotten onion 🧅",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
   {id:20,name:"plum🍑",price:55,description:"A sweet and juicy fruit with smooth skin and a single pit inside.",image:"./res/plum.png"},
   {id:18,name:"grapes", price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jepg"},
