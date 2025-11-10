@@ -6,24 +6,25 @@ const products = [
   {id:4,name:"Knobby Tomatoes 🍅",price:35,description:"Juicy tomatoes with funny bumps and curves.",image:"./res/tomato.jpg"},
   {id:5,name:"Misshaped Pears 🍐",price:45,description:"Sweet pears that didn’t meet supermarket standards.",image:"./res/pears.jpeg"},
   {id:6,name:"Odd Strawberries 🍓",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"},
-
+  {id:7,name:"jack fruit 🥭",price:500,description:"Jackfruit is a giant tropical fruit with a spiky green exterior and sweet, fibrous yellow flesh that tastes like a mix of mango, banana, and pineapple.",image:"./res/jack.jpeg"},
   {id:8,name:"Dairng Dragon  🐉",price:1000000,description:"Exotic and vibrant dragon fruits full of nutrients.",image:"./res/dragond.jpg"},
- 
- 
- 
- 
- 
- 
-  {id:13,name:"rotten onion 🧅",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
   {id:9,name:"lady finger 🥒",price:40,description: "quick and tasty lady finger recipe! Easy to cook and super delicious:",image:"./res/ladyfinger.jpeg"},
-
-
-
-
   {id:10,name:"Wonky Brinjals 🍆", price:55,description:"Tasty brinjals with quirky shapes, perfect for cooking.", image:"./res/brinjal.jpg"},
   {id:11,name:"pumpkin 🎃",price:100,description:" pumpkin is a round, orange fruit with thick skin and seeds inside. It’s used for cooking, decoration, and making pies.",image:"./res/pumpkin.jpeg"},
-  {id:7,name:"jack fruit 🥭",price:500,description:"Jackfruit is a giant tropical fruit with a spiky green exterior and sweet, fibrous yellow flesh that tastes like a mix of mango, banana, and pineapple.",image:"./res/jack.jpeg"},
   {id:12,name:"Berry Blue berry 🫐", price:300,description:"Blue Berry A burst of freshness in every bite.Sweet, juicy, and packed with antioxidants, Blue Berry brings natural goodness and vibrant flavor to your day",image:"./res/berry.png"},
+  {id:13,name:"rotten onion 🧅",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
+ 
+ 
+ 
+  
+  
+  
+  {id:20,name:"plum🍑",price:55,description:"A sweet and juicy fruit with smooth skin and a single pit inside.",image:"./res/plum.png"},
+  
+  
+
+
+
 {id:16,name:"PApaya", price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
 ];
 
