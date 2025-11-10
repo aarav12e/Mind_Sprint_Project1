@@ -6,6 +6,12 @@ const products = [
   {id:4,name:"Knobby Tomatoes 🍅",price:35,description:"Juicy tomatoes with funny bumps and curves.",image:"./res/tomato.jpg"},
   {id:5,name:"Misshaped Pears 🍐",price:45,description:"Sweet pears that didn’t meet supermarket standards.",image:"./res/pears.jpeg"},
   {id:6,name:"Odd Strawberries 🍓",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"},
+  
+  
+  
+  
+  
+  {id:11,name:"pumpkin 🎃",price:100,description:" pumpkin is a round, orange fruit with thick skin and seeds inside. It’s used for cooking, decoration, and making pies.",image:"./res/pumpkin.jpeg"},
   {id:7,name:"jack fruit 🥭",price:500,description:"Jackfruit is a giant tropical fruit with a spiky green exterior and sweet, fibrous yellow flesh that tastes like a mix of mango, banana, and pineapple.",image:"./res/jack.jpeg"},
 
 
