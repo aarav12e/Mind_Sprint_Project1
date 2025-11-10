@@ -1,11 +1,12 @@
-// ------------------- Products -------------------
+  // ------------------- Products -------------------
 const products = [
   {id:1,name:"Ugly Apples 🍎",price:50,description:"Fresh but oddly shaped apples from local farms.",image:"https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80"},
   {id:2,name:"Twisted Carrots 🥕",price:40,description:"Nutrient-rich carrots that look a bit funny.",image:"./res/carrot.jpeg"},
   {id:3,name:"Curvy Bananas 🍌",price:30,description:"Perfectly ripe bananas with unusual shapes.",image:"./res/banana.jpg"},
   {id:4,name:"Knobby Tomatoes 🍅",price:35,description:"Juicy tomatoes with funny bumps and curves.",image:"./res/tomato.jpg"},
   {id:5,name:"Misshaped Pears 🍐",price:45,description:"Sweet pears that didn’t meet supermarket standards.",image:"./res/pears.jpeg"},
-  {id:6,name:"Odd Strawberries 🍓",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"}
+  {id:6,name:"Odd Strawberries 🍓",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"},
+  {id:7,name:"jack fruit 🥭",price:500,description:"Jackfruit is a giant tropical fruit with a spiky green exterior and sweet, fibrous yellow flesh that tastes like a mix of mango, banana, and pineapple.",image:"./res/jack.jpeg"}
 ];
 
 // ------------------- Cart Helpers -------------------
@@ -21,7 +22,7 @@ function updateCartCount() {
 // ------------------- Toast -------------------
 function showToast(message){
   const toast = document.createElement("div");
-  toast.className = "toast";
+  toast.className = "toast"; 
   toast.innerText = message;
   document.body.appendChild(toast);
   setTimeout(()=> toast.remove(),1500);
