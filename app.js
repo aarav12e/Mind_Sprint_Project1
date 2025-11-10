@@ -6,6 +6,8 @@ const products = [
   {id:4,name:"Knobby Tomatoes 🍅",price:35,description:"Juicy tomatoes with funny bumps and curves.",image:"./res/tomato.jpg"},
   {id:5,name:"Misshaped Pears 🍐",price:45,description:"Sweet pears that didn’t meet supermarket standards.",image:"./res/pears.jpeg"},
   {id:6,name:"Odd Strawberries 🍓",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"}
+
+  {id:7,name:"Dairng Dragon  🐉",price:70,description:"Exotic and vibrant dragon fruits full of nutrients.",image:"./res/dragond.jpg"},
 ];
 
 // ------------------- Cart Helpers -------------------
