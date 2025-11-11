@@ -13,10 +13,11 @@ const products = [
   {id:11,name:"pumpkin 🎃",price:100,description:" pumpkin is a round, orange fruit with thick skin and seeds inside. It’s used for cooking, decoration, and making pies.",image:"./res/pumpkin.jpeg"},
   {id:12,name:"Berry Blue berry 🫐", price:300,description:"Blue Berry A burst of freshness in every bite.Sweet, juicy, and packed with antioxidants, Blue Berry brings natural goodness and vibrant flavor to your day",image:"./res/berry.png"},
   {id:13,name:"rotten onion 🧅",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
+  {id:14,name:"Bamboo🎍",price:20,description:"Bamboo is a great source of oxygen and purifying our environment.",image:"./res/Bamboo.jpg"},
   {id:15,name:"cauliflower 🥦",price:70,description:"Fresh and nutritious cauliflower – tasty, healthy, and perfect for every Indian dish",image:"./res/cauliflower.jpeg"},
   {id:16,name:"Papaya", price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
   {id:17,name:"Cucumber", price:400, description:"Cucumber is a healthy vegetable, tropical vegetable rich in water.",image:"./res/cucumber.jpg"},
-  {id:18,name:"grapes", price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jepg"},
+  {id:18,name:"grapes", price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jpeg"},
   {id:19,name:"elephantfoot",price:200,description:"Elephantfoot yam is a large, starchy tuber resembling an elephant’s foot, widely used as a nutritious tropical vegetable.",image:"./res/elephantfoot.jpeg"},
   {id:20,name:"plum🍑",price:55,description:"A sweet and juicy fruit with smooth skin and a single pit inside.",image:"./res/plum.png"},
 ];
