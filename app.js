@@ -15,6 +15,7 @@ const products = [
   {id:13,name:"rotten onion 🧅",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
   {id:15,name:"cauliflower 🥦",price:70,description:"Fresh and nutritious cauliflower – tasty, healthy, and perfect for every Indian dish",image:"./res/cauliflower.jpeg"},
   {id:16,name:"Papaya", price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
+  {id:17,name:"Cucumber", price:400, description:"Cucumber is a healthy vegetable, tropical vegetable rich in water.",image:"./res/cucumber.jpg"},
   {id:18,name:"grapes", price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jepg"},
   {id:19,name:"elephantfoot",price:200,description:"Elephantfoot yam is a large, starchy tuber resembling an elephant’s foot, widely used as a nutritious tropical vegetable.",image:"./res/elephantfoot.jpeg"},
   {id:20,name:"plum🍑",price:55,description:"A sweet and juicy fruit with smooth skin and a single pit inside.",image:"./res/plum.png"},
