@@ -16,9 +16,12 @@ const products = [
   {id:15,name:"cauliflower 🥦",price:70,description:"Fresh and nutritious cauliflower – tasty, healthy, and perfect for every Indian dish",image:"./res/cauliflower.jpeg"},
   {id:16,name:"Papaya", price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
   {id:17,name:"Cucumber", price:400, description:"Cucumber is a healthy vegetable, tropical vegetable rich in water.",image:"./res/cucumber.jpg"},
-  {id:18,name:"grapes", price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jepg"},
+  {id:18,name:"grapes", price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jpeg"},
   {id:19,name:"elephantfoot",price:200,description:"Elephantfoot yam is a large, starchy tuber resembling an elephant’s foot, widely used as a nutritious tropical vegetable.",image:"./res/elephantfoot.jpeg"},
   {id:20,name:"plum🍑",price:55,description:"A sweet and juicy fruit with smooth skin and a single pit inside.",image:"./res/plum.png"},
+  {id:21,name:"zuchini",price:170,description:"Zucchini is a versatile summer squash with a mild flavor, perfect for grilling, roasting, or adding to salads and stir-fries.",image:"./res/zucchini.jpg"},
+  {id:22,name:"Cynara cardunculus",price:250,description:"Cynara cardunculus, commonly known as cardoon, is a thistle-like vegetable related to the artichoke, valued for its edible stalks and flower buds.",image:"./res/artichokes.jpg"},
+
 ];
 // 14,17
 // ------------------- Cart Helpers -------------------
