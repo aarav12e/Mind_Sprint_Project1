@@ -68,3 +68,18 @@ header p { font-size:1.1rem; color:#065f46; }
   .nav-buttons { flex-direction: column; gap:5px; }
   #search { width:100%; }
 }
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background: #e7f9ee;
+  color: #064e3b;
+  font-weight: 600;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  margin-top: auto;
+}
