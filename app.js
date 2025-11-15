@@ -24,7 +24,7 @@ const products = [
   {id:23,name:"bazela",catogary:"herbs",price:300,description:"it is a nice aromatic herb used in most Italian cusine, its freshness and taste enhances the flavour of food.",image:"./res/basil.jpg"},
  
 ];
-// 14,17
+
 // ------------------- Cart Helpers -------------------
 function getCart() { return JSON.parse(localStorage.getItem("cart")) || []; }
 function saveCart(cart) { localStorage.setItem("cart", JSON.stringify(cart)); }
