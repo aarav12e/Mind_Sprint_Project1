@@ -8,11 +8,19 @@ nav {
   color: white;
   padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 }
 nav h1 { font-size: 22px; }
+nav h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
 .nav-buttons { display: flex; align-items: center; gap:10px; flex-wrap: wrap; }
 .cart-btn, #logout-btn {
   background: white; color:#16a34a; border:none; padding:8px 12px; border-radius:8px; font-weight:bold; cursor:pointer;
@@ -31,22 +39,83 @@ header {
 header h2 { font-size: 2.2rem; margin-bottom:10px; }
 header p { font-size:1.1rem; color:#065f46; }
 
+/* Category Section */
+.category-section {
+  text-align: center;
+  padding: 20px;
+  background: #f0f0f0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.category-btn {
+  padding: 10px 20px;
+  border: 2px solid #16a34a;
+  background: white;
+  color: #16a34a;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.category-btn:hover {
+  background: #e8f5e9;
+}
+.category-btn.active {
+  background: #16a34a;
+  color: white;
+}
+
 /* Products Grid */
 .product-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:25px; padding:30px; }
 .card {
-  background:white; border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition:0.3s; position:relative;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 390px; /* fixed height for each card */
+  width: 300px; /* fixed width for each card */
+  min-height: 300px; /* reduced by additional 15% from 384px */
 }
 .card:hover { transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.15); }
-.card img { width:100%; height:180px; object-fit:cover; }
-.card-content { padding:15px; }
+.card img {
+  width: 100%;
+  /* keep the product image the same fixed height while card slot increases */
+  height: 140px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+.card-content {
+  padding: 20px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  overflow: hidden;
+}
 .card-content h3 { font-size:18px; margin-bottom:5px; color:#16a34a; }
 .card-content p { font-size:14px; color:#555; margin-bottom:8px; }
 .price { font-weight:bold; color:#16a34a; }
 .add-btn {
-  width:100%; padding:10px; border:none; border-radius:8px; background:#16a34a; color:white; font-weight:bold; cursor:pointer;
-  transition:0.3s;
+  width:100%;
+  padding:8px 10px;
+  border:none;
+  border-radius:8px;
+  background:#16a34a;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.2s;
+  margin-top: auto; /* push button to bottom of card-content */
+  font-size: 14px;
 }
-.add-btn:hover { background:#15803d; }
+.add-btn:hover { background:#15803d; transform: translateY(-1px); }
 
 /* Cart Page */
 .cart-item { background:white; border-radius:12px; padding:15px; margin-bottom:15px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
@@ -62,6 +131,201 @@ header p { font-size:1.1rem; color:#065f46; }
 .login-container button:hover { background:#15803d; }
 .login-container a { color:#16a34a; text-decoration:none; }
 .login-container a:hover { text-decoration:underline; }
+
+/* Register Page */
+.register-container { 
+  max-width:450px; 
+  margin:50px auto; 
+  background:white; 
+  padding:40px; 
+  border-radius:12px; 
+  box-shadow:0 4px 12px rgba(0,0,0,0.15); 
+  text-align:center; 
+}
+.register-container h2 { 
+  margin-bottom:30px; 
+  color:#16a34a; 
+  font-size:1.8rem;
+}
+.register-container form { 
+  display:flex; 
+  flex-direction:column; 
+  gap:15px; 
+}
+.form-group { 
+  text-align:left; 
+}
+.form-group label { 
+  display:block; 
+  margin-bottom:6px; 
+  color:#333; 
+  font-weight:600; 
+  font-size:14px;
+}
+.form-group input { 
+  width:100%; 
+  padding:12px; 
+  border-radius:8px; 
+  border:1px solid #ddd; 
+  font-size:14px; 
+  transition:0.3s;
+}
+.form-group input:focus { 
+  outline:none; 
+  border-color:#16a34a; 
+  box-shadow:0 0 5px rgba(22,163,74,0.3);
+}
+.form-group small { 
+  display:block; 
+  margin-top:4px; 
+  color:#888; 
+  font-size:12px;
+}
+.register-btn { 
+  padding:12px; 
+  background:#16a34a; 
+  color:white; 
+  border:none; 
+  border-radius:8px; 
+  cursor:pointer; 
+  font-weight:bold; 
+  font-size:16px;
+  transition:0.3s; 
+  margin-top:10px;
+}
+.register-btn:hover { 
+  background:#15803d; 
+  transform: translateY(-2px);
+}
+.login-link { 
+  margin-top:20px; 
+  color:#555; 
+  font-size:14px;
+}
+.login-link a { 
+  color:#16a34a; 
+  text-decoration:none; 
+  font-weight:bold;
+}
+.login-link a:hover { 
+  text-decoration:underline; 
+}
+
+/* Password Strength Meter */
+#password-strength-container {
+  margin-top: 6px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#password-strength-meter {
+  width: 100px;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+#password-strength-meter.strength-bad {
+  background-color: #dc2626;
+}
+
+#password-strength-meter.strength-good {
+  background-color: #f59e0b;
+}
+
+#password-strength-meter.strength-strong {
+  background-color: #10b981;
+}
+
+#password-strength-text {
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 70px;
+}
+
+.strength-text-bad {
+  color: #dc2626;
+}
+
+.strength-text-good {
+  color: #f59e0b;
+}
+
+.strength-text-strong {
+  color: #10b981;
+}
+
+/* Password Requirements Checklist */
+#password-requirements {
+  margin-top: 12px;
+  padding: 12px;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+}
+
+.requirements-title {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.requirement {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.requirement:last-child {
+  margin-bottom: 0;
+}
+
+.req-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 11px;
+  transition: all 0.3s ease;
+}
+
+.requirement.unchecked .req-icon {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.requirement.checked .req-icon {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.requirement.unchecked {
+  color: #6b7280;
+}
+
+.requirement.checked {
+  color: #16a34a;
+  font-weight: 500;
+}
+
+/* Disabled Field Message */
+.disabled-msg {
+  display: none;
+  color: #dc2626;
+  font-weight: 600;
+  margin-top: 6px;
+}
 
 /* Responsive */
 @media(max-width:600px){
