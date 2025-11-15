@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <h1>🍎  ugly Fresh 🥑</h1>
+    </nav>
+
+    <!-- Register Container -->
+    <div class="register-container">
+        <h2>Create Your Account</h2>
+        <form id="registerForm" onsubmit="handleRegister(event)">
+            
+            <!-- Username Field -->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    placeholder="Enter your username" 
+                    autocomplete="username"
+                    required
+                    minlength="3"
+                >
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="Enter your email" 
+                    autocomplete="email"
+                    required
+                >
+            </div>
+
+            <!-- Phone Number Field -->
+            <div class="form-group">
+                <label for="phoneno">Phone Number</label>
+                <input 
+                    type="tel" 
+                    id="phoneno" 
+                    name="phoneno" 
+                    placeholder="Enter your phone number" 
+                    autocomplete="tel"
+                    pattern="[0-9]{10}"
+                    required
+                >
+                <small>Enter 10-digit phone number</small>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">New Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="Enter new password" 
+                    autocomplete="new-password"
+                    required
+                    minlength="6"
+                    oninput="checkPasswordStrength()"
+                >
+                <div id="password-strength-container">
+                    <div id="password-strength-meter"></div>
+                    <span id="password-strength-text"></span>
+                </div>
+                
+                <!-- Password Requirements Checklist -->
+                <div id="password-requirements">
+                    <p class="requirements-title">Password Requirements:</p>
+                    <div id="req-length" class="requirement unchecked">
+                        <span class="req-icon">✗</span> At least 6 characters
+                    </div>
+                    <div id="req-lowercase" class="requirement unchecked">
+                        <span class="req-icon">✗</span> Lowercase letter (a-z)
+                    </div>
+                    <div id="req-uppercase" class="requirement unchecked">
+                        <span class="req-icon">✗</span> Uppercase letter (A-Z)
+                    </div>
+                    <div id="req-number" class="requirement unchecked">
+                        <span class="req-icon">✗</span> Number (0-9)
+                    </div>
+                    <div id="req-special" class="requirement unchecked">
+                        <span class="req-icon">✗</span> Special character (@$!%*?&)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input 
+                    type="password" 
+                    id="confirmPassword" 
+                    name="confirmPassword" 
+                    placeholder="Confirm your password" 
+                    autocomplete="new-password"
+                    disabled
+                    required
+                >
+                <small id="confirm-disabled-msg" class="disabled-msg">⚠️ Complete password requirements first</small>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="register-btn">Register</button>
+        </form>
+
+        <!-- Login Link -->
+        <p class="login-link">Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function checkPasswordRequirements(password) {
+            // Check each requirement
+            const hasLength = password.length >= 6;
+            const hasLowercase = /[a-z]/.test(password);
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasNumber = /\d/.test(password);
+            const hasSpecial = /[@$!%*?&]/.test(password);
+            
+            // Update requirement UI
+            updateRequirement('req-length', hasLength);
+            updateRequirement('req-lowercase', hasLowercase);
+            updateRequirement('req-uppercase', hasUppercase);
+            updateRequirement('req-number', hasNumber);
+            updateRequirement('req-special', hasSpecial);
+            
+            // Check if all requirements are met
+            const allMet = hasLength && hasLowercase && hasUppercase && hasNumber && hasSpecial;
+            
+            // Enable/disable confirm password field
+            const confirmField = document.getElementById('confirmPassword');
+            const disabledMsg = document.getElementById('confirm-disabled-msg');
+            
+            if (allMet) {
+                confirmField.disabled = false;
+                disabledMsg.style.display = 'none';
+                confirmField.style.opacity = '1';
+                confirmField.style.cursor = 'text';
+            } else {
+                confirmField.disabled = true;
+                disabledMsg.style.display = 'block';
+                confirmField.style.opacity = '0.5';
+                confirmField.style.cursor = 'not-allowed';
+                confirmField.value = ''; // Clear confirm field if requirements not met
+            }
+            
+            return allMet;
+        }
+        
+        function updateRequirement(elementId, isMet) {
+            const element = document.getElementById(elementId);
+            const icon = element.querySelector('.req-icon');
+            
+            if (isMet) {
+                element.classList.remove('unchecked');
+                element.classList.add('checked');
+                icon.textContent = '✓';
+            } else {
+                element.classList.remove('checked');
+                element.classList.add('unchecked');
+                icon.textContent = '✗';
+            }
+        }
+        
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthMeter = document.getElementById('password-strength-meter');
+            const strengthText = document.getElementById('password-strength-text');
+            
+            // Check requirements first
+            checkPasswordRequirements(password);
+            
+            if (password.length === 0) {
+                strengthMeter.style.width = '0%';
+                strengthMeter.className = '';
+                strengthText.textContent = '';
+                return;
+            }
+            
+            let strength = 0;
+            
+            // Check length
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            if (password.length >= 14) strength++;
+            
+            // Check lowercase
+            if (/[a-z]/.test(password)) strength++;
+            
+            // Check uppercase
+            if (/[A-Z]/.test(password)) strength++;
+            
+            // Check numbers
+            if (/\d/.test(password)) strength++;
+            
+            // Check special characters
+            if (/[@$!%*?&]/.test(password)) strength++;
+            
+            // Set width and color based on strength
+            const strengthPercent = (strength / 7) * 100;
+            strengthMeter.style.width = strengthPercent + '%';
+            
+            if (strength <= 2) {
+                strengthMeter.className = 'strength-bad';
+                strengthText.textContent = '❌ Bad';
+                strengthText.className = 'strength-text-bad';
+            } else if (strength <= 4) {
+                strengthMeter.className = 'strength-good';
+                strengthText.textContent = '⚠️ Good';
+                strengthText.className = 'strength-text-good';
+            } else {
+                strengthMeter.className = 'strength-strong';
+                strengthText.textContent = '✅ Strong';
+                strengthText.className = 'strength-text-strong';
+            }
+        }
+        
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const phoneno = document.getElementById('phoneno').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validate password must contain at least one uppercase letter, one lowercase letter, one number, and one special character
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+            if (!passwordRegex.test(password)) {
+                alert('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
+                return;
+            }
+
+            // Validate passwords match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Store user data in localStorage (in a real app, this would be sent to a server)
+            const userData = {
+                username: username,
+                email: email,
+                phoneno: phoneno,
+                password: password
+            };
+
+            localStorage.setItem('registeredUser', JSON.stringify(userData));
+            console.log('User registered:', userData);
+            alert('Registration successful! Welcome, ' + username);
+            
+            // Redirect to home page after successful registration
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

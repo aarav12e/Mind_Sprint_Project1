@@ -1,27 +1,28 @@
   // ------------------- Products -------------------
 const products = [
-  {id:1,name:"Ugly Apples 🍎",price:50,description:"Fresh but oddly shaped apples from local farms.",image:"https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80"},
-  {id:2,name:"Twisted Carrots 🥕",price:40,description:"Nutrient-rich carrots that look a bit funny.",image:"./res/carrot.jpeg"},
-  {id:3,name:"Curvy Bananas 🍌",price:30,description:"Perfectly ripe bananas with unusual shapes.",image:"./res/banana.jpg"},
-  {id:4,name:"Knobby Tomatoes 🍅",price:35,description:"Juicy tomatoes with funny bumps and curves.",image:"./res/tomato.jpg"},
-  {id:5,name:"Misshaped Pears 🍐",price:45,description:"Sweet pears that didn’t meet supermarket standards.",image:"./res/pears.jpeg"},
-  {id:6,name:"Odd Strawberries 🍓",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"},
-  {id:7,name:"jack fruit 🥭",price:500,description:"Jackfruit is a giant tropical fruit with a spiky green exterior and sweet, fibrous yellow flesh that tastes like a mix of mango, banana, and pineapple.",image:"./res/jack.jpeg"},
-  {id:8,name:"Dairng Dragon  🐉",price:1000000,description:"Exotic and vibrant dragon fruits full of nutrients.",image:"./res/dragond.jpg"},
-  {id:9,name:"lady finger 🥒",price:40,description: "quick and tasty lady finger recipe! Easy to cook and super delicious:",image:"./res/ladyfinger.jpeg"},
-  {id:10,name:"Wonky Brinjals 🍆", price:55,description:"Tasty brinjals with quirky shapes, perfect for cooking.", image:"./res/brinjal.jpg"},
-  {id:11,name:"pumpkin 🎃",price:100,description:" pumpkin is a round, orange fruit with thick skin and seeds inside. It’s used for cooking, decoration, and making pies.",image:"./res/pumpkin.jpeg"},
-  {id:12,name:"Berry Blue berry 🫐", price:300,description:"Blue Berry A burst of freshness in every bite.Sweet, juicy, and packed with antioxidants, Blue Berry brings natural goodness and vibrant flavor to your day",image:"./res/berry.png"},
-  {id:13,name:"rotten onion 🧅",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
-  {id:15,name:"cauliflower 🥦",price:70,description:"Fresh and nutritious cauliflower – tasty, healthy, and perfect for every Indian dish",image:"./res/cauliflower.jpeg"},
-  {id:16,name:"Papaya", price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
-  {id:17,name:"Cucumber", price:400, description:"Cucumber is a healthy vegetable, tropical vegetable rich in water.",image:"./res/cucumber.jpg"},
-  {id:18,name:"grapes", price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jpeg"},
-  {id:19,name:"elephantfoot",price:200,description:"Elephantfoot yam is a large, starchy tuber resembling an elephant’s foot, widely used as a nutritious tropical vegetable.",image:"./res/elephantfoot.jpeg"},
-  {id:20,name:"plum🍑",price:55,description:"A sweet and juicy fruit with smooth skin and a single pit inside.",image:"./res/plum.png"},
-  {id:21,name:"zuchini",price:170,description:"Zucchini is a versatile summer squash with a mild flavor, perfect for grilling, roasting, or adding to salads and stir-fries.",image:"./res/zucchini.jpg"},
-  {id:22,name:"Cynara cardunculus",price:250,description:"Cynara cardunculus, commonly known as cardoon, is a thistle-like vegetable related to the artichoke, valued for its edible stalks and flower buds.",image:"./res/artichokes.jpg"},
-
+  {id:1,name:"Ugly Apples 🍎",catogary:"fruits",price:50,description:"Fresh but oddly shaped apples from local farms.",image:"https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80"},
+  {id:2,name:"Twisted Carrots 🥕",catogary:"vegetables", price:40,description:"Nutrient-rich carrots that look a bit funny.",image:"./res/carrot.jpeg"},
+  {id:3,name:"Curvy Bananas 🍌",catogary:"fruits", price:30,description:"Perfectly ripe bananas with unusual shapes.",image:"./res/banana.jpg"},
+  {id:4,name:"Knobby Tomatoes 🍅",catogary:"vegetables", price:35,description:"Juicy tomatoes with funny bumps and curves.",image:"./res/tomato.jpg"},
+  {id:5,name:"Misshaped Pears 🍐",catogary:"fruits",price:45,description:"Sweet pears that didn’t meet supermarket standards.",image:"./res/pears.jpeg"},
+  {id:6,name:"Odd Strawberries 🍓",catogary:"fruits",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"},
+  {id:7,name:"jack fruit 🥭",catogary:"fruits",price:500,description:"Jackfruit is a giant tropical fruit with a spiky green exterior and sweet, fibrous yellow flesh.",image:"./res/jack.jpeg"},
+  {id:8,name:"Dairng Dragon  🐉",catogary:"fruits",price:1000000,description:"Exotic and vibrant dragon fruits full of nutrients.",image:"./res/dragond.jpg"},
+  {id:9,name:"lady finger 🥒",catogary:"vegetables",price:40,description: "quick and tasty lady finger recipe! Easy to cook and super delicious:",image:"./res/ladyfinger.jpeg"},
+  {id:10,name:"Wonky Brinjals 🍆",catogary:"vegetables",price:55,description:"Tasty brinjals with quirky shapes, perfect for cooking.", image:"./res/brinjal.jpg"},
+  {id:11,name:"pumpkin 🎃",catogary:"vegetables",price:100,description:" pumpkin is a round, orange fruit with thick skin and seeds inside. It’s used for cooking, decoration, and making pies.",image:"./res/pumpkin.jpeg"},
+  {id:12,name:"Berry Blue berry 🫐",catogary:"fruits",price:300,description:"Blue Berry A burst of freshness in every bite.Sweet, juicy, and packed with antioxidants.",image:"./res/berry.png"},
+  {id:13,name:"rotten onion 🧅",catogary:"vegetables",price:181,description:"rotten onion full of flavours.",image:"./res/Onion.jpg"},
+  {id:15,name:"cauliflower 🥦",catogary:"vegetables",price:70,description:"Fresh and nutritious cauliflower – tasty, healthy, and perfect for every Indian dish",image:"./res/cauliflower.jpeg"},
+  {id:16,name:"Papaya",catogary:"fruits",price:120, description:"Papaya is a sweet, tropical fruit rich in vitamins that boosts immunity and promotes healthy digestion. 🍈✨", image:"./res/papaya.png" },
+  {id:17,name:"Cucumber",catogary:"vegetables",price:400, description:"Cucumber is a healthy vegetable, tropical vegetable rich in water.",image:"./res/cucumber.jpg"},
+  {id:18,name:"grapes",catogary:"fruits",price:500,description:"grapes A burst of freshness in every bite.Sweet, juicy. ",image:"./res/grapes.jpeg"},
+  {id:19,name:"elephantfoot",catogary:"vegetables",price:200,description:"Elephantfoot yam is a large, starchy tuber resembling an elephant’s foot, widely used as a nutritious tropical vegetable.",image:"./res/elephantfoot.jpeg"},
+  {id:20,name:"plum🍑",catogary:"fruits",price:55,description:"A sweet and juicy fruit with smooth skin and a single pit inside.",image:"./res/plum.png"},
+  {id:21,name:"zuchini",catogary:"vegetables",price:170,description:"Zucchini is a versatile summer squash with a mild flavor, perfect for grilling, roasting, or adding to salads and stir-fries.",image:"./res/zucchini.jpg"},
+  {id:22,name:"Cynara cardunculus",catogary:"vegetables",price:250,description:"Cynara cardunculus, commonly known as cardoon, is a thistle-like vegetable related to the artichoke, valued for its edible stalks and flower buds.",image:"./res/artichokes.jpg"},
+  {id:23,name:"bazela",catogary:"herbs",price:300,description:"it is a nice aromatic herb used in most Italian cusine, its freshness and taste enhances the flavour of food.",image:"./res/basil.jpg"},
+ 
 ];
 // 14,17
 // ------------------- Cart Helpers -------------------
@@ -84,13 +85,47 @@ function renderProducts(list){
   });
 }
 
+// ------------------- Category Filter -------------------
+let selectedCategory = "all";
+
+const categoryButtons = document.querySelectorAll(".category-btn");
+categoryButtons.forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    // Remove active class from all buttons
+    categoryButtons.forEach(b => b.classList.remove("active"));
+    // Add active class to clicked button
+    e.target.classList.add("active");
+    
+    selectedCategory = e.target.getAttribute("data-category");
+    filterProducts();
+  });
+});
+
+// Set "All" button as active by default
+if(categoryButtons.length > 0) categoryButtons[0].classList.add("active");
+
+function filterProducts(){
+  const searchValue = document.getElementById("search")?.value.toLowerCase() || "";
+  let filtered = products;
+  
+  // Filter by category
+  if(selectedCategory !== "all"){
+    filtered = filtered.filter(p => p.catogary === selectedCategory);
+  }
+  
+  // Filter by search
+  if(searchValue){
+    filtered = filtered.filter(p => p.name.toLowerCase().includes(searchValue));
+  }
+  
+  renderProducts(filtered);
+}
+
 // ------------------- Search -------------------
 const searchInput = document.getElementById("search");
 if(searchInput){
   searchInput.addEventListener("input", e=>{
-    const value = e.target.value.toLowerCase();
-    const filtered = products.filter(p=>p.name.toLowerCase().includes(value));
-    renderProducts(filtered);
+    filterProducts();
   });
 }
 
@@ -157,7 +192,7 @@ if(document.getElementById("login-form")){
 }
 
 // ------------------- Protect Pages -------------------
-if(!window.location.href.includes("login.html")){
+if(!window.location.href.includes("login.html") && !window.location.href.includes("register.html")){
   const loggedIn = localStorage.getItem("loggedIn");
   if(!loggedIn){ window.location.href="login.html"; }
 }
