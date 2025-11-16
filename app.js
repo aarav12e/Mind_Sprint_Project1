@@ -7,7 +7,7 @@ const products = [
   {id:5,name:"Misshaped Pears 🍐",catogary:"fruits",price:45,description:"Sweet pears that didn’t meet supermarket standards.",image:"./res/pears.jpeg"},
   {id:6,name:"Odd Strawberries 🍓",catogary:"fruits",price:60,description:"Fresh strawberries with unusual shapes but full of flavor.",image:"./res/straw.jpeg"},
   {id:7,name:"jack fruit 🥭",catogary:"fruits",price:500,description:"Jackfruit is a giant tropical fruit with a spiky green exterior and sweet, fibrous yellow flesh.",image:"./res/jack.jpeg"},
-  {id:8,name:"Dairng Dragon  🐉",catogary:"fruits",price:1000000,description:"Exotic and vibrant dragon fruits full of nutrients.",image:"./res/dragond.jpg"},
+  {id:8,name:"Dairng Dragon  🐉",catogary:"fruits",price:1600,description:"Exotic and vibrant dragon fruits full of nutrients.",image:"./res/dragond.jpg"},
   {id:9,name:"lady finger 🥒",catogary:"vegetables",price:40,description: "quick and tasty lady finger recipe! Easy to cook and super delicious:",image:"./res/ladyfinger.jpeg"},
   {id:10,name:"Wonky Brinjals 🍆",catogary:"vegetables",price:55,description:"Tasty brinjals with quirky shapes, perfect for cooking.", image:"./res/brinjal.jpg"},
   {id:11,name:"pumpkin 🎃",catogary:"vegetables",price:100,description:" pumpkin is a round, orange fruit with thick skin and seeds inside. It’s used for cooking, decoration, and making pies.",image:"./res/pumpkin.jpeg"},
@@ -53,20 +53,23 @@ function showToast(message){
 }
 
 // ------------------- Add to Cart -------------------
+// ------------------- Add to Cart -------------------
 function addToCart(productId){
   let cart = getCart();
   const product = products.find(p => p.id === productId);
   const existing = cart.find(i => i.id === productId);
+
   if(existing){
     existing.quantity++;
   } else {
     cart.push({...product, quantity: 1});
   }
+
   saveCart(cart);
   updateCartCount();
   showToast(`${product.name} added to cart!`);
 
-  // Update cart page dynamically
+  // If on cart page, auto-update
   if(document.getElementById("cart-page")){
     renderCartPage();
   }
@@ -77,18 +80,34 @@ function renderProducts(list){
   const productList = document.getElementById("product-list");
   if(!productList) return;
   productList.innerHTML = "";
-  list.forEach(item=>{
+
+  list.forEach(item => {
     const card = document.createElement("div"); 
     card.className = "card";
+
     card.innerHTML = `
       <img src="${item.image}" alt="${item.name}">
       <div class="card-content">
         <h3>${item.name}</h3>
         <p>${item.description}</p>
         <p class="price">₹${item.price} / kg</p>
-        <button class="add-btn">Add to Cart</button>
-      </div>`;
-    card.querySelector(".add-btn").addEventListener("click", ()=>addToCart(item.id));
+
+      
+        <div class="card-buttons">
+          <button class="buy-now-btn">Buy Now</button>
+          <button class="add-btn">Add to Cart</button>
+        </div>
+
+      </div>
+    `;
+
+    // Add to Cart event
+    card.querySelector(".add-btn").addEventListener("click", () => addToCart(item.id));
+
+    // BUY NOW event
+    /* BUY NOW */
+    card.querySelector(".buy-now-btn").addEventListener("click", () => buyNow(item.id));
+
     productList.appendChild(card);
   });
 }
@@ -221,4 +240,10 @@ renderProducts(products);
 updateCartCount();
 if(document.getElementById("cart-page")){
   renderCartPage();
+}
+
+/* BUY NOW */
+function buyNow(productId){
+  addToCart(productId);          // Pehle cart me add
+  window.location.href = "cart.html"; // Phir redirect
 }
