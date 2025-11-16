@@ -33,7 +33,10 @@ nav h1 {
 header {
   text-align: center;
   padding: 60px 20px;
-  background: linear-gradient(135deg,#bbf7d0,#16a34a);
+  background-image: url("./res/banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #064e3b;
 }
 header h2 { font-size: 2.2rem; margin-bottom:10px; }
@@ -331,4 +334,36 @@ header p { font-size:1.1rem; color:#065f46; }
 @media(max-width:600px){
   .nav-buttons { flex-direction: column; gap:5px; }
   #search { width:100%; }
+}
+
+/* SAME SIZE BUTTONS FOR ADD TO CART & BUY NOW */
+.card-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.add-btn,
+.buy-now-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;      /* Same padding */
+  height: 42px;       /* Same height */
+  border-radius: 8px; /* Same radius */
+  font-weight: 600;
+  font-size: 14px;    /* Same font size */
+  border: none;
+  cursor: pointer;
+}
+
+.add-btn {
+  background: #16a34a;
+  color: white;
+}
+
+.buy-now-btn {
+  background: #facc15;
+  color: black;
 }
