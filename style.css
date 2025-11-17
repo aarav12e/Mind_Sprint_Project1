@@ -555,3 +555,11 @@ footer {
 @keyframes toast-out {
   to { opacity: 0; transform: translateY(10px); }
 }
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  margin-top: auto;
+}
