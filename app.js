@@ -25,12 +25,12 @@ const products = [
   {id:24,name:"mint",catogary:"herbs",price:50,description:"Fresh mint leaves that add a burst of flavor to any dish or drink.",image:"./res/mint.jpg"},
   {id:25,name:"rosemary-plant",catogary:"herbs",price:80,description:"Rosemary is a fragrant evergreen herb known for its culinary and medicinal uses.",image:"./res/rosemary-plant.jpeg"},
   {id:26,name:"bay-leaves",catogary:"herbs",price:40,description:"Bay leaves are aromatic herbal leaves used to add a subtle, earthy flavor to soups, curries, and stews.",image:"./res/bay-leaves.jpg"},
-  {id:27,name:"pea",catogary:"vegetable",price:100,description:"Pea is a small, sweet green legume packed with nutrients and used in a variety of dishes.",image:"./res/pea.jpg"},
-  {id:28,name:"patatoes",catogary:"vegetable",price:250,description:"Potato is a versatile, starchy vegetable used worldwide for its rich texture and mild, comforting flavor.",image:"./res/potatoes.jpg"},
-  {id:29,name:"capsicum",catogary:"vegetable",price:100,decription:"Capsicum is a colorful, crunchy vegetable known for its mild sweetness and vibrant flavor in dishes.",image:"./res/capsicum.jpg"},
-  {id:30,name:"cherry",catogary:"fruit",price:150,description:"Cherry is a small, juicy fruit loved for its sweet-tart flavor and bright, vibrant color.",image:"./res/cherry.jpg"},
-  {id:31,name:"kiwi",catogary:"fruit",price:300,description:"Kiwi is a tangy, nutrient-rich fruit known for its vibrant green flesh and refreshing flavor.",image:"./res/kiwi.jpg"},
-  {id:32,name:"aloevera",catogary:"herb",price:100,description:"Aloe vera is a soothing, succulent plant valued for its healing gel and skin-nourishing benefits.",image:"./res/aloevera.jpg"},
+  {id:27,name:"pea",catogary:"vegetables",price:100,description:"Pea is a small, sweet green legume packed with nutrients and used in a variety of dishes.",image:"./res/pea.jpg"},
+  {id:28,name:"patatoes",catogary:"vegetables",price:250,description:"Potato is a versatile, starchy vegetable used worldwide for its rich texture and mild, comforting flavor.",image:"./res/potatoes.jpg"},
+  {id:29,name:"capsicum",catogary:"vegetables",price:100,decription:"Capsicum is a colorful, crunchy vegetable known for its mild sweetness and vibrant flavor in dishes.",image:"./res/capsicum.jpg"},
+  {id:30,name:"cherry",catogary:"fruits",price:150,description:"Cherry is a small, juicy fruit loved for its sweet-tart flavor and bright, vibrant color.",image:"./res/cherry.jpg"},
+  {id:31,name:"kiwi",catogary:"fruits",price:300,description:"Kiwi is a tangy, nutrient-rich fruit known for its vibrant green flesh and refreshing flavor.",image:"./res/kiwi.jpg"},
+  {id:32,name:"aloevera",catogary:"herbs",price:100,description:"Aloe vera is a soothing, succulent plant valued for its healing gel and skin-nourishing benefits.",image:"./res/aloevera.jpg"},
 ];
 
 // ------------------- Cart Helpers -------------------
