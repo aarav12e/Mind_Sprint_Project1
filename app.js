@@ -23,6 +23,7 @@ const products = [
   {id:22,name:"Cynara cardunculus",catogary:"vegetables",price:250,description:"Cynara cardunculus, commonly known as cardoon, is a thistle-like vegetable related to the artichoke, valued for its edible stalks and flower buds.",image:"./res/artichokes.jpg"},
   {id:23,name:"bazela",catogary:"herbs",price:300,description:"it is a nice aromatic herb used in most Italian cusine, its freshness and taste enhances the flavour of food.",image:"./res/basil.jpg"},
   {id:24,name:"mint",catogary:"herbs",price:50,description:"Fresh mint leaves that add a burst of flavor to any dish or drink.",image:"./res/mint.jpg"}
+
 ];
 
 // ------------------- Cart Helpers -------------------
@@ -236,6 +237,13 @@ if(document.getElementById("cart-page")){
 
 /* BUY NOW */
 function buyNow(productId){
-  addToCart(productId);          // Pehle cart me add
-  window.location.href = "cart.html"; // Phir redirect
+  // Instead of directly adding to cart and opening cart page,
+  // save selected product to localStorage and open the purchase page
+  const product = products.find(p => p.id === productId);
+  if(product){
+    // store minimal product info for the buy flow
+    const buyProduct = { id: product.id, name: product.name, price: product.price, quantity: 1 };
+    localStorage.setItem('buyProduct', JSON.stringify(buyProduct));
+  }
+  window.location.href = "buy.html";
 }
