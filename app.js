@@ -22,6 +22,7 @@ const products = [
   {id:21,name:"zuchini",catogary:"vegetables",price:170,description:"Zucchini is a versatile summer squash with a mild flavor, perfect for grilling, roasting, or adding to salads and stir-fries.",image:"./res/zucchini.jpg"},
   {id:22,name:"Cynara cardunculus",catogary:"vegetables",price:250,description:"Cynara cardunculus, commonly known as cardoon, is a thistle-like vegetable related to the artichoke, valued for its edible stalks and flower buds.",image:"./res/artichokes.jpg"},
   {id:23,name:"bazela",catogary:"herbs",price:300,description:"it is a nice aromatic herb used in most Italian cusine, its freshness and taste enhances the flavour of food.",image:"./res/basil.jpg"},
+
   {id:24,name:"mint",catogary:"herbs",price:50,description:"Fresh mint leaves that add a burst of flavor to any dish or drink.",image:"./res/mint.jpg"},
   {id:25,name:"rosemary-plant",catogary:"herbs",price:80,description:"Rosemary is a fragrant evergreen herb known for its culinary and medicinal uses.",image:"./res/rosemary-plant.jpeg"},
   {id:26,name:"bay-leaves",catogary:"herbs",price:40,description:"Bay leaves are aromatic herbal leaves used to add a subtle, earthy flavor to soups, curries, and stews.",image:"./res/bay-leaves.jpg"},
@@ -329,8 +330,15 @@ if(document.getElementById("cart-page")){
 
 /* BUY NOW */
 function buyNow(productId){
-  addToCart(productId);          // Pehle cart me add
-  window.location.href = "cart.html"; // Phir redirect
+  // Instead of directly adding to cart and opening cart page,
+  // save selected product to localStorage and open the purchase page
+  const product = products.find(p => p.id === productId);
+  if(product){
+    // store minimal product info for the buy flow
+    const buyProduct = { id: product.id, name: product.name, price: product.price, quantity: 1 };
+    localStorage.setItem('buyProduct', JSON.stringify(buyProduct));
+  }
+  window.location.href = "buy.html";
 }
 
 // Initialize cart display on page load
