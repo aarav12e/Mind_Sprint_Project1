@@ -1,6 +1,6 @@
 /* Reset and basics */
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; color:#333; }
+body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; color:#333; display: flex; flex-direction: column; min-height: 100vh; }
 
 /* Navbar */
 nav {
@@ -234,6 +234,15 @@ header p { font-size:1.1rem; color:#065f46; }
   font-size: 20px;
   padding: 40px;
   color: #666;
+}
+
+/* Footer */
+footer {
+  background: #16a34a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto;
 }
 
 /* Login */
