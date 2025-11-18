@@ -17,10 +17,13 @@ nav {
 }
 nav h1 { 
   font-size: 22px;
-  position: static;
-  transform: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0;
-  flex: 0 0 auto;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 5;
 }
 .nav-buttons { 
   display: flex; 
@@ -568,6 +571,9 @@ footer {
     gap: 10px;
   }
   nav h1 {
+    /* On small screens let the title participate in normal flow */
+    position: static;
+    transform: none;
     text-align: center;
     margin-bottom: 10px;
   }
