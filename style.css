@@ -1,5 +1,6 @@
 /* Reset and basics */
 * { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', sans-serif; background: #e7fcf1; color:#333; }
 body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; color:#333; display: flex; flex-direction: column; min-height: 100vh; }
 
 /* Navbar */
@@ -268,7 +269,94 @@ footer {
 }
 
 /* Login */
-.login-container { max-width:400px; margin:80px auto; background:white; padding:30px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15); text-align:center; }
+.logo-txt {
+  font-size: 55px;
+  position: absolute;
+  top: 80px;
+  left: 120px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #16a34a;
+}
+
+.login-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #e7fcf1;
+  justify-content: center;
+  align-items: center;
+}
+.login-left {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 40px;
+}
+.logo-text {
+  max-width: 400px;
+  color: #fff;
+}
+.logo-text h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #41d81b;
+  margin-bottom: 12px;
+  text-align: left;
+  letter-spacing: -2px;
+}
+.logo-text p {
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: #0c0707;
+  text-align: left;
+  margin-top: 0;
+}
+.login-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.login-container {
+  min-width: 350px;
+  max-width: 400px;
+  margin: 0;
+  background: #fff;
+  padding: 32px 24px 24px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  text-align: center;
+}
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #1877f2;
+  font-size: 2rem;
+  font-weight: bold;
+}
+@media (max-width: 900px) {
+  .login-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .login-left, .login-right {
+    flex: unset;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .logo-text {
+    margin: 40px auto 0 auto;
+    text-align: center;
+  }
+  .login-container {
+    margin: 40px auto;
+  }
+}
 .login-container h2 { margin-bottom:20px; color:#16a34a; }
 .login-container form { display:flex; flex-direction:column; gap:15px; }
 .login-container input { padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px; }
@@ -281,7 +369,7 @@ footer {
 .register-container { 
   max-width:450px; 
   margin:50px auto; 
-  background:white; 
+  background:#e7fcf1; 
   padding:40px; 
   border-radius:12px; 
   box-shadow:0 4px 12px rgba(0,0,0,0.15); 
@@ -311,7 +399,7 @@ footer {
   width:100%; 
   padding:12px; 
   border-radius:8px; 
-  border:1px solid #ddd; 
+  border:1px solid #c4f7d3; 
   font-size:14px; 
   transition:0.3s;
 }
@@ -531,6 +619,31 @@ footer {
   color: black;
 }
 
+/* Styling for "ugly fresh" text */
+.logo-txt{
+  position: absolute;
+  top: 80px; /* Moves the text slightly lower */
+  left: 120px;
+}
+
+.logo-txt h1 {
+margin: 0;
+  font-size: 52px;
+  font-weight: bold;
+  color: green;
+}
+.logo-txt p {
+  margin-top: 6px;
+  font-size: 20px;
+  color: #065f46;
+  padding-left: 25px;
+}
+
+/* Page background utility for pages that should match the login background */
+.page-blue-bg {
+  background: #e7fcf1;
+  min-height: 100vh;
+}
 /* Toast notification */
 .toast {
   position: fixed;

@@ -7,38 +7,38 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div class="login-container">
-    <h2>Login to UglyFresh 🌱</h2>
-    <form id="login-form">
-      <label for="username">Username</label>
-      <input type="text" id="username" required placeholder="Enter username">
-
-      <label for="password">Password</label>
-      <input type="password" id="password" required placeholder="Enter password">
-
-      <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="register.html">Register here</a></p>
+  <div class="login-wrapper">
+    <div class="login-left">
+      <div class="logo-text">
+        <h1>UglyFresh 🌱</h1>
+        <p>Your go-to app for reducing food waste!</p>
+      </div>
+    </div>
+    <div class="login-right">
+      <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form">
+          <label for="username">Username</label>
+          <input type="text" id="username" required placeholder="Enter username">
+          <label for="password">Password</label>
+          <input type="password" id="password" required placeholder="Enter password">
+          <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+      </div>
+    </div>
   </div>
-
   <script src="app.js"></script>
   <script>
     document.getElementById('login-form').addEventListener('submit', function(event) {
       event.preventDefault();
-      
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
-      
-      // Check if user was registered
       const registeredUser = localStorage.getItem('registeredUser');
-      
       if (registeredUser) {
         const userData = JSON.parse(registeredUser);
-        
         if (userData.username === username && userData.password === password) {
           alert('Login successful! Welcome, ' + username);
-          // Redirect to home page or dashboard
           window.location.href = 'index.html';
         } else {
           alert('Invalid username or password!');
