@@ -398,6 +398,28 @@ footer {
   font-weight:600; 
   font-size:14px;
 }
+
+/* Generic button base */
+.btn {
+  padding:10px 14px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  background: #ffffff;
+  color: #111827;
+}
+
+/* Yellow / warning style for prominent actions */
+.btn-yellow {
+  background: #f59e0b; /* amber-500 */
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(245,158,11,0.12);
+}
+.btn-yellow:hover { background: #d97706; }
+
+/* Small utility for ghost buttons used in JS */
+.btn-ghost { background: #fff; border:1px solid #d1d5db; color:#111827 }
 .form-group input { 
   width:100%; 
   padding:12px; 
