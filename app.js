@@ -236,6 +236,8 @@ function displayCart() {
 
   cartHTML += '</div>';
   cartHTML += `<div class="cart-summary"><h3>Total: ₹${total}</h3></div>`;
+  // Add Place Order button (yellow) and Save Cart
+  cartHTML += `<div style="margin-top:12px; display:flex; gap:8px;"><button class="btn btn-yellow" onclick="placeOrderFromCart()">Place Order</button><button class="btn btn-ghost" onclick="saveCartDraft()">Save Cart</button></div>`;
   cartPage.innerHTML = cartHTML;
 }
 
@@ -285,6 +287,41 @@ function removeFromCart(index) {
   displayCart();
 }
 
+// Helper to generate simple order id
+// Generate a unique alphanumeric ID (letters + digits) and ensure no collision with stored orders
+function generateUniqueId(prefix, length = 8){
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+  const existing = new Set((orders||[]).map(o => o.id));
+  let attempt = 0;
+  while(attempt < 1000){
+    let id = '';
+    for(let i=0;i<length;i++) id += chars[Math.floor(Math.random()*chars.length)];
+    const candidate = prefix + '-' + id;
+    if(!existing.has(candidate)) return candidate;
+    attempt++;
+  }
+  return prefix + '-' + Math.random().toString(36).substr(2,8).toUpperCase();
+}
+
+// Place an order from the entire cart (demo/local only)
+function placeOrderFromCart(){
+  // Instead of placing order immediately, redirect user to buy.html with cart prefilled
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if(!cart || cart.length === 0){ alert('Your cart is empty'); return; }
+  // save cart to buyCart so buy.html can render checkout for multiple items
+  localStorage.setItem('buyCart', JSON.stringify(cart));
+  // open buy.html where user will enter shipping/payment details and confirm
+  window.location.href = 'buy.html';
+}
+
+// Save current cart as a draft (simple alias)
+function saveCartDraft(){
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  localStorage.setItem('orderDraft', JSON.stringify({ items: cart, savedAt: new Date().toISOString() }));
+  showToast('Cart saved as draft');
+}
+
 // ------------------- Login -------------------
 if(document.getElementById("login-form")){
   const loginForm = document.getElementById("login-form");
@@ -328,6 +365,13 @@ if(document.getElementById("cart-page")){
   renderCartPage();
 }
 
+// Store a simple productId -> image map in localStorage for other pages to use as a fallback
+try{
+  const productImages = {};
+  products.forEach(p => { if(p && p.id) productImages[p.id] = p.image || p.img || ''; });
+  localStorage.setItem('productImages', JSON.stringify(productImages));
+}catch(e){/* ignore */}
+
 /* BUY NOW */
 function buyNow(productId){
   // Instead of directly adding to cart and opening cart page,
@@ -335,7 +379,7 @@ function buyNow(productId){
   const product = products.find(p => p.id === productId);
   if(product){
     // store minimal product info for the buy flow
-    const buyProduct = { id: product.id, name: product.name, price: product.price, quantity: 1 };
+    const buyProduct = { id: product.id, name: product.name, price: product.price, quantity: 1, image: product.image, desc: product.description };
     localStorage.setItem('buyProduct', JSON.stringify(buyProduct));
   }
   window.location.href = "buy.html";

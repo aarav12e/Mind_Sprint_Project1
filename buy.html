@@ -3,377 +3,455 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Buy / Order — Mind Sprint</title>
+  <title>Buy — Mind Sprint</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    main { max-width:900px; margin:40px auto; padding:20px; background:#fff; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.06); }
-    h1{ color:#16a34a; margin-bottom:8px }
-    section{ margin:18px 0; padding:12px; border-radius:8px; background:#f9fafb; }
-    label{ display:block; margin:8px 0 4px; font-weight:600 }
-    input[type="text"], input[type="tel"], input[type="number"], textarea, select { width:100%; padding:10px; border-radius:6px; border:1px solid #ddd }
-    .row{ display:flex; gap:12px; }
+    body{ background:#f3f4f6; font-family:Segoe UI, Arial, sans-serif }
+    main { max-width:900px; margin:36px auto; padding:18px; background:#fff; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+    h1{ color:#111827; margin-bottom:6px }
+    .product { display:flex; gap:20px; align-items:flex-start }
+    .product img{ width:160px; height:160px; object-fit:cover; border-radius:8px; border:1px solid #e5e7eb }
+    .product-info{ flex:1 }
+    label{ display:block; margin:8px 0 6px; font-weight:600; color:#374151 }
+    input[type="text"], input[type="tel"], input[type="number"], textarea, select { width:100%; padding:10px; border-radius:6px; border:1px solid #e5e7eb; background:#ffffff }
+    .row{ display:flex; gap:12px }
     .col{ flex:1 }
-    .small { max-width:220px }
-    .btn { padding:10px 14px; border-radius:8px; border:none; cursor:pointer; font-weight:700 }
-    .btn-primary{ background:#16a34a; color:#fff }
-    .btn-ghost{ background:#fff; border:1px solid #16a34a; color:#16a34a }
-    .badge{ display:inline-block; background:#e6ffed; color:#087f5b; padding:6px 8px; border-radius:6px; font-weight:700 }
-    .label-preview{ background:#fff; border:1px dashed #ddd; padding:10px; margin-top:8px; border-radius:6px }
-    .timeline{ display:flex; gap:8px; align-items:center; margin-top:8px }
-    .step{ padding:8px 10px; border-radius:8px; background:#fff; border:1px solid #eee; font-weight:700 }
-    .step.active{ background:#16a34a; color:#fff }
-    .note{ color:#555; font-size:14px; margin-top:8px }
+    .small{ max-width:180px }
+    .btn{ padding:10px 14px; border-radius:8px; border:none; cursor:pointer; font-weight:700 }
+    .btn-primary{ background:#0ea5a4; color:#fff }
+    .summary{ border-left:1px solid #f3f4f6; padding-left:18px }
+    .muted{ color:#6b7280; font-size:13px }
+    .success{ background:#ecfdf5; color:#065f46; padding:10px 12px; border-radius:8px; display:inline-block }
   </style>
 </head>
 <body>
-  <nav>
-    <h1 style="color:white; position:relative; left:20px;">Mind Sprint — Order</h1>
-  </nav>
   <main>
-    <h1>Create Order & Shipping Label</h1>
-    <p class="note">Fill mandatory fields (Name, Mobile, Address, Pincode, Product name, Quantity, Price). Without these delivery cannot be processed.</p>
+    <h1>Buy Now</h1>
+    <p class="muted">This page is for buyers. Review product, enter shipping details, choose payment and place the order.</p>
 
-    <!-- 1️⃣ Customer Details -->
-    <section id="customer-details">
-      <h3>1️⃣ Customer Details (Mandatory)</h3>
-      <label for="cust-name">Customer ka naam *</label>
-      <input id="cust-name" type="text" required placeholder="Full name">
+    <div style="display:flex; gap:24px; margin-top:18px; align-items:flex-start">
+      <div style="flex:2">
+        <div class="product">
+            <img id="prod-img" src="res/banana.jpg" alt="product">
+          <div class="product-info">
+            <h2 id="prod-name">Product name</h2>
+            <div style="margin:6px 0; font-weight:700; font-size:18px">₹ <span id="prod-price">0.00</span></div>
+            <div class="muted">Seller: Mind Sprint</div>
+            <p id="prod-desc" class="muted" style="margin-top:10px">Short product description will appear here.</p>
 
-      <div class="row">
-        <div class="col small">
-          <label for="cust-mobile">Mobile number *</label>
-          <input id="cust-mobile" type="tel" pattern="[0-9]{10}" required placeholder="9876543210">
+            <div id="cart-items" style="margin-top:12px"></div>
+
+            <div id="single-qty" style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+              <label style="margin:0">Quantity</label>
+              <input id="quantity" type="number" min="1" value="1" style="width:90px; padding:8px; border-radius:6px; border:1px solid #e5e7eb">
+            </div>
+          </div>
         </div>
-        <div class="col small">
-          <label for="cust-pincode">Pincode *</label>
-          <input id="cust-pincode" type="text" pattern="[0-9]{6}" required placeholder="110001">
-        </div>
-      </div>
 
-      <label for="cust-address">Delivery address *</label>
-      <textarea id="cust-address" rows="3" required placeholder="House no, Street, Area"></textarea>
+        <section style="margin-top:18px">
+          <h3 style="margin:0 0 8px 0">Shipping Address</h3>
+          <label for="cust-name">Full name *</label>
+          <input id="cust-name" type="text" placeholder="Your name">
 
-      <label for="cust-landmark">Landmark (optional)</label>
-      <input id="cust-landmark" type="text" placeholder="Near temple / Mall">
-    </section>
+          <div class="row" style="margin-top:8px">
+            <div class="col small">
+              <label for="cust-mobile">Mobile *</label>
+              <input id="cust-mobile" type="tel" placeholder="9876543210">
+            </div>
+            <div class="col small">
+              <label for="cust-pincode">Pincode *</label>
+              <input id="cust-pincode" type="text" placeholder="110001">
+            </div>
+          </div>
 
-    <!-- 2️⃣ Order Details -->
-    <section id="order-details">
-      <h3>2️⃣ Order Details</h3>
-      <label for="product-name">Product ka naam *</label>
-      <input id="product-name" type="text" required placeholder="e.g. Curvy Bananas">
+          <label for="cust-address">Address *</label>
+          <textarea id="cust-address" rows="3" placeholder="House no, Street, Area"></textarea>
+        </section>
 
-      <div class="row">
-        <div class="col small">
-          <label for="quantity">Quantity *</label>
-          <input id="quantity" type="number" min="1" value="1" required>
-        </div>
-        <div class="col small">
-          <label for="price">Price (₹) *</label>
-          <input id="price" type="number" min="0" step="0.01" required>
-        </div>
-        <div class="col small">
-          <label for="order-id">Order ID</label>
-          <input id="order-id" type="text" readonly placeholder="(will be generated)">
-        </div>
-      </div>
+        <section style="margin-top:16px">
+          <h3 style="margin:0 0 8px 0">Payment</h3>
+          <select id="payment-mode">
+            <option value="prepaid">Prepaid (Card / UPI)</option>
+            <option value="cod">Cash on Delivery</option>
+          </select>
+        </section>
 
-      <label for="payment-mode">Payment Mode</label>
-      <select id="payment-mode">
-        <option value="prepaid">Prepaid (Online)</option>
-        <option value="cod">Cash on Delivery (COD)</option>
-      </select>
-
-      <p class="note">Delivery boy ko batata hai kya deliver karna hai.</p>
-    </section>
-
-    <!-- 3️⃣ Proper Packaging -->
-    <section id="packaging">
-      <h3>3️⃣ Proper Packaging</h3>
-      <label><input type="checkbox" id="pack-bubble"> Safe packing (bubble wrap / box)</label>
-      <label><input type="checkbox" id="pack-damage"> Product damage-proof</label>
-      <label><input type="checkbox" id="pack-tape"> Tape and sealing</label>
-      <label><input type="checkbox" id="pack-label"> Shipping label attached</label>
-      <p class="note">Taaki product safe rahe aur identify ho sake.</p>
-    </section>
-
-    <!-- 4️⃣ Shipping Label -->
-    <section id="shipping-label">
-      <h3>4️⃣ Shipping Label (Preview)</h3>
-      <div class="label-preview" id="label-preview">
-        <div><strong>Customer:</strong> <span id="lbl-name">-</span></div>
-        <div><strong>Address:</strong> <span id="lbl-address">-</span> <strong>Pincode:</strong> <span id="lbl-pincode">-</span></div>
-        <div><strong>Phone:</strong> <span id="lbl-phone">-</span></div>
-        <div><strong>Order ID:</strong> <span id="lbl-order">-</span></div>
-        <div><strong>Tracking ID:</strong> <span id="lbl-track">-</span></div>
-      </div>
-      <p class="note">Ye label packet ke upar chipka hona chahiye.</p>
-    </section>
-
-    <!-- 5️⃣ Delivery Partner -->
-    <section>
-      <h3>5️⃣ Delivery Partner / Courier Service</h3>
-      <select id="courier">
-        <option value="delhivery">Delhivery</option>
-        <option value="bluedart">Blue Dart</option>
-        <option value="dtdc">DTDC</option>
-        <option value="ekart">Ekart (Flipkart)</option>
-        <option value="shadowfax">Shadowfax</option>
-      </select>
-      <p class="note">Unke app me order update hota hai.</p>
-    </section>
-
-    <!-- 6️⃣ Delivery Boy / Agent -->
-    <section>
-      <h3>6️⃣ Delivery Boy / Agent</h3>
-      <label for="agent-name">Agent Name</label>
-      <input id="agent-name" type="text" placeholder="Agent full name">
-
-      <label for="agent-id">Agent ID</label>
-      <input id="agent-id" type="text" placeholder="ID / Employee no">
-
-      <div class="row">
-        <div class="col small">
-          <label><input type="checkbox" id="agent-smartphone"> Smartphone</label>
-        </div>
-        <div class="col small">
-          <label><input type="checkbox" id="agent-app"> Courier App installed</label>
-        </div>
-        <div class="col small">
-          <label><input type="checkbox" id="agent-gps"> GPS navigation</label>
+        <div style="margin-top:16px; display:flex; gap:8px;">
+          <button class="btn btn-primary" onclick="placeOrder()">Place Order</button>
+          <button class="btn" onclick="saveDraft()" style="border:1px solid #d1d5db">Save as Draft</button>
         </div>
       </div>
-      <label for="agent-vehicle">Vehicle</label>
-      <input id="agent-vehicle" type="text" placeholder="Bike / Scooter / Van">
-    </section>
 
-    <!-- 7️⃣ Payment Mode note is in Order Details -->
+      <aside class="summary" style="flex:1">
+        <h3 style="margin-top:0">Order Summary</h3>
+        <div style="display:flex; justify-content:space-between; margin-top:8px"><div>Price</div><div>₹ <span id="sum-price">0.00</span></div></div>
+        <div style="display:flex; justify-content:space-between; margin-top:6px"><div>Qty</div><div id="sum-qty">1</div></div>
+        <hr style="margin:12px 0">
+        <div style="display:flex; justify-content:space-between; font-weight:700"><div>Total</div><div>₹ <span id="sum-total">0.00</span></div></div>
 
-    <!-- 8️⃣ Tracking System -->
-    <section>
-      <h3>8️⃣ Tracking System</h3>
-      <div class="timeline" id="tracking-timeline">
-        <div class="step" data-step="picked">Order picked</div>
-        <div class="step" data-step="transit">In transit</div>
-        <div class="step" data-step="out">Out for delivery</div>
-        <div class="step" data-step="delivered">Delivered</div>
-      </div>
-      <div style="margin-top:10px; display:flex; gap:8px;">
-        <button class="btn btn-ghost" onclick="setTracking('picked')">Mark picked</button>
-        <button class="btn btn-ghost" onclick="setTracking('transit')">Mark in transit</button>
-        <button class="btn btn-ghost" onclick="setTracking('out')">Mark out for delivery</button>
-        <button class="btn btn-primary" onclick="setTracking('delivered')">Mark delivered</button>
-      </div>
-    </section>
-
-    <!-- 9️⃣ OTP or Signature -->
-    <section>
-      <h3>9️⃣ OTP or Signature (For Verification)</h3>
-      <div style="display:flex; gap:8px; align-items:center;">
-        <button class="btn btn-primary" onclick="sendOTP()">Send OTP</button>
-        <input id="otp-input" type="text" placeholder="Enter OTP" style="width:160px; padding:8px; border-radius:6px; border:1px solid #ddd">
-        <button class="btn btn-ghost" onclick="verifyOTP()">Verify OTP</button>
-      </div>
-      <p class="note">OTP will be sent to customer phone (simulated). Or capture signature below.</p>
-      <label for="signature">Signature (customer)</label>
-      <input id="signature" type="text" placeholder="Customer typed name as signature">
-    </section>
-
-    <!-- 10️⃣ Return / Replacement Policy -->
-    <section>
-      <h3>🔟 Return / Replacement Policy</h3>
-      <p>Return pickup, Exchange, and Refund process are supported. Use buttons below to simulate.</p>
-      <div style="display:flex; gap:8px;">
-        <button class="btn btn-ghost" onclick="initiateReturn('return')">Initiate Return</button>
-        <button class="btn btn-ghost" onclick="initiateReturn('exchange')">Initiate Exchange</button>
-        <button class="btn btn-ghost" onclick="initiateReturn('refund')">Request Refund</button>
-      </div>
-    </section>
-
-    <div style="margin-top:16px; display:flex; gap:8px;">
-      <button class="btn btn-primary" onclick="generateOrder()">Generate Order & Label</button>
-      <button class="btn btn-ghost" onclick="saveAsDraft()">Save as Draft</button>
-      <button class="btn" style="background:#ef4444; color:#fff" onclick="clearForm()">Clear Form</button>
+        <div style="margin-top:14px">
+          <div id="order-result"></div>
+        </div>
+        <div style="margin-top:12px; display:flex; gap:8px">
+          <button class="btn" onclick="toggleOrdersPanel()" style="border:1px solid #d1d5db">View Orders</button>
+        </div>
+        <div id="orders-panel" style="display:none; margin-top:12px;">
+          <h4 style="margin:6px 0">Your Orders</h4>
+          <div style="margin-bottom:8px; display:flex; gap:8px; align-items:center;">
+            <input id="orders-search" type="text" placeholder="Search orders by ID, product, name or phone" style="flex:1; padding:8px; border-radius:6px; border:1px solid #e5e7eb">
+            <button class="btn" onclick="document.getElementById('orders-search').value=''; renderOrders();" title="Clear">Clear</button>
+          </div>
+          <div id="orders-list" style="max-height:300px; overflow:auto; border:1px solid #eef2f7; padding:8px; border-radius:8px; background:#fafafc"></div>
+        </div>
+      </aside>
     </div>
-
-    <p style="margin-top:14px; color:#555; font-size:14px">Note: This page simulates order creation and label generation. In production, SMS OTP and courier integration would be done server-side.</p>
   </main>
 
   <script>
-    // Simple in-page state
-    let currentOTP = null;
-    let currentStatus = null;
+    // Small buyer-focused script (supports single item and cart checkout)
+    function fmt(n){ return Number(n||0).toFixed(2); }
 
-    function generateId(prefix){
-      return prefix + '-' + Math.random().toString(36).substr(2,9).toUpperCase();
+    // Generate a unique alphanumeric ID (letters + digits) and ensure no collision with stored orders
+    function generateUniqueId(prefix, length = 8){
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+      const existing = new Set((orders||[]).map(o => o.id));
+      let attempt = 0;
+      while(attempt < 1000){
+        let id = '';
+        for(let i=0;i<length;i++) id += chars[Math.floor(Math.random()*chars.length)];
+        const candidate = prefix + '-' + id;
+        if(!existing.has(candidate)) return candidate;
+        attempt++;
+      }
+      // fallback
+      return prefix + '-' + Math.random().toString(36).substr(2,8).toUpperCase();
     }
 
-    function validateMandatory(){
+    // Update order summary: supports buyCart (multi-item) and buyProduct (single)
+    function updateSummary(){
+      const buyCart = JSON.parse(localStorage.getItem('buyCart')||'null');
+      if(buyCart && Array.isArray(buyCart) && buyCart.length){
+        const total = buyCart.reduce((s,i)=> s + (Number(i.price)||0) * (Number(i.quantity)||1), 0);
+        const qty = buyCart.reduce((s,i)=> s + (Number(i.quantity)||1), 0);
+        document.getElementById('sum-price').innerText = fmt(total);
+        document.getElementById('sum-qty').innerText = qty;
+        document.getElementById('sum-total').innerText = fmt(total);
+        // reflect in product price display
+        document.getElementById('prod-price').innerText = fmt(total);
+        document.getElementById('prod-price').dataset.value = total;
+        // hide single quantity control for cart checkout
+        const singleQty = document.getElementById('single-qty'); if(singleQty) singleQty.style.display = 'none';
+        return;
+      }
+
+      const price = Number(document.getElementById('prod-price').dataset.value||0);
+      const qty = Number(document.getElementById('quantity').value||1);
+      document.getElementById('sum-price').innerText = fmt(price);
+      document.getElementById('sum-qty').innerText = qty;
+      document.getElementById('sum-total').innerText = fmt(price*qty);
+    }
+
+    document.getElementById('quantity').addEventListener('input', updateSummary);
+
+    // Place order: supports multi-item cart or single product
+    function placeOrder(){
       const name = document.getElementById('cust-name').value.trim();
-      const mobile = document.getElementById('cust-mobile').value.trim();
+      const phone = document.getElementById('cust-mobile').value.trim();
       const pincode = document.getElementById('cust-pincode').value.trim();
       const address = document.getElementById('cust-address').value.trim();
-      const product = document.getElementById('product-name').value.trim();
-      const qty = document.getElementById('quantity').value;
-      const price = document.getElementById('price').value;
+      const payment = document.getElementById('payment-mode').value;
 
-      if(!name || !mobile || !pincode || !address || !product || !qty || !price){
-        alert('Please fill all mandatory fields (Name, Mobile, Address, Pincode, Product, Quantity, Price).');
-        return false;
-      }
-      if(!/^[0-9]{10}$/.test(mobile)) { alert('Enter valid 10 digit mobile number'); return false; }
-      if(!/^[0-9]{6}$/.test(pincode)) { alert('Enter valid 6 digit pincode'); return false; }
-      return true;
-    }
+      if(!name || !phone || !pincode || !address){ alert('Please fill shipping details'); return; }
+      if(!/^[0-9]{10}$/.test(phone)){ alert('Enter valid 10 digit mobile number'); return; }
 
-    function generateOrder(){
-      if(!validateMandatory()) return;
+      const buyCart = JSON.parse(localStorage.getItem('buyCart')||'null');
+      let order = null;
 
-      const orderId = generateId('ORD');
-      const trackingId = generateId('TRK');
-      document.getElementById('order-id').value = orderId;
-
-      // Update shipping label preview
-      document.getElementById('lbl-name').innerText = document.getElementById('cust-name').value;
-      const address = document.getElementById('cust-address').value + (document.getElementById('cust-landmark').value ? ', Landmark: ' + document.getElementById('cust-landmark').value : '');
-      document.getElementById('lbl-address').innerText = address;
-      document.getElementById('lbl-pincode').innerText = document.getElementById('cust-pincode').value;
-      document.getElementById('lbl-phone').innerText = document.getElementById('cust-mobile').value;
-      document.getElementById('lbl-order').innerText = orderId;
-      document.getElementById('lbl-track').innerText = trackingId;
-
-      // Save a small order object locally
-      const order = {
-        orderId, trackingId,
-        customer: {
-          name: document.getElementById('cust-name').value,
-          phone: document.getElementById('cust-mobile').value,
-          address: document.getElementById('cust-address').value,
-          pincode: document.getElementById('cust-pincode').value,
-          landmark: document.getElementById('cust-landmark').value
-        },
-        product: {
-          name: document.getElementById('product-name').value,
-          qty: document.getElementById('quantity').value,
-          price: document.getElementById('price').value,
-        },
-        courier: document.getElementById('courier').value,
-        payment: document.getElementById('payment-mode').value,
-        packaging: {
-          bubble: document.getElementById('pack-bubble').checked,
-          damage: document.getElementById('pack-damage').checked,
-          tape: document.getElementById('pack-tape').checked,
-          label: document.getElementById('pack-label').checked
-        },
-        status: 'Order picked'
-      }
-
-      // store in localStorage for demo
-      localStorage.setItem('latestOrder', JSON.stringify(order));
-
-      // mark timeline to 'picked'
-      setTracking('picked');
-
-      alert('Order generated: ' + orderId + '\nTracking: '+ trackingId);
-    }
-
-    function setTracking(step){
-      currentStatus = step;
-      const steps = document.querySelectorAll('.timeline .step');
-      steps.forEach(s => s.classList.remove('active'));
-      // mark up to the step as active
-      const order = ['picked','transit','out','delivered'];
-      const idx = order.indexOf(step);
-      for(let i=0;i<=idx;i++){
-        const s = document.querySelector('.timeline .step[data-step="'+order[i]+'"]');
-        if(s) s.classList.add('active');
-      }
-      // show small note
-      showToast('Status updated: ' + step);
-
-      // update stored order
-      const stored = JSON.parse(localStorage.getItem('latestOrder')||'null');
-      if(stored){ stored.status = step; localStorage.setItem('latestOrder', JSON.stringify(stored)); }
-    }
-
-    function sendOTP(){
-      if(!validateMandatory()) return;
-      currentOTP = Math.floor(1000 + Math.random()*9000).toString();
-      // In real system we'd send SMS. Here we simulate by alert and console.
-      alert('Simulated OTP sent to customer: ' + currentOTP);
-      console.log('Simulated OTP:', currentOTP);
-    }
-
-    function verifyOTP(){
-      const val = document.getElementById('otp-input').value.trim();
-      if(!currentOTP){ alert('Please send OTP first'); return; }
-      if(val === currentOTP){
-        showToast('OTP verified — Delivery complete');
-        setTracking('delivered');
-        // store proof
-        const stored = JSON.parse(localStorage.getItem('latestOrder')||'null');
-        if(stored){ stored.proof = { type:'otp', value:val, time: new Date().toISOString() }; localStorage.setItem('latestOrder', JSON.stringify(stored)); }
+      if(buyCart && Array.isArray(buyCart) && buyCart.length){
+        // Build order with items array (include image when available)
+        const items = buyCart.map(i => ({ id: i.id, name: i.name, price: Number(i.price)||0, qty: Number(i.quantity)||1, total: (Number(i.price)||0)*(Number(i.quantity)||1), image: (i.image || i.img || '') }));
+        const total = items.reduce((s,it)=> s + it.total, 0);
+        order = {
+          id: generateUniqueId('ORD',8),
+          items,
+          total,
+          customer:{ name, phone, pincode, address },
+          payment, createdAt: new Date().toISOString(),
+          trackingId: generateUniqueId('TRK',10),
+          status: 'placed'
+        };
+        // Save order
+        const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
+        // cleanup
+        localStorage.removeItem('buyCart');
       } else {
-        alert('Invalid OTP');
+        // single product flow
+        const qty = Number(document.getElementById('quantity').value||1);
+        const price = Number(document.getElementById('prod-price').dataset.value||0);
+        order = {
+          id: generateUniqueId('ORD',8),
+          product: document.getElementById('prod-name').innerText,
+          productImage: document.getElementById('prod-img').src,
+          qty, price, total: price*qty,
+          customer:{ name, phone, pincode, address },
+          payment, createdAt: new Date().toISOString(),
+          trackingId: generateUniqueId('TRK',10),
+          status: 'placed'
+        };
+        const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
+        try{ localStorage.removeItem('buyProduct'); }catch(e){}
       }
+
+      const result = document.getElementById('order-result');
+      if(order){
+        result.innerHTML = '<div class="success">Order placed — <strong>'+order.id+'</strong><br>Tracking: <em>'+order.trackingId+'</em></div>';
+      }
+
+      try{ localStorage.removeItem('orderDraft'); }catch(e){}
+      updateSummary();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function initiateReturn(type){
-      const stored = JSON.parse(localStorage.getItem('latestOrder')||'null');
-      if(!stored){ alert('No order found to return/exchange'); return; }
-      // Simulate a return request
-      const req = { type, orderId: stored.orderId, createdAt: new Date().toISOString() };
-      localStorage.setItem('returnRequest', JSON.stringify(req));
-      alert('Request submitted: ' + type + '\nOur team will schedule pickup.');
-    }
-
-    function saveAsDraft(){
+    function saveDraft(){
+      const buyCart = JSON.parse(localStorage.getItem('buyCart')||'null');
       const draft = {
         name: document.getElementById('cust-name').value,
         phone: document.getElementById('cust-mobile').value,
-        product: document.getElementById('product-name').value
+        address: document.getElementById('cust-address').value,
+        product: document.getElementById('prod-name').innerText,
+        qty: document.getElementById('quantity').value,
+        items: buyCart || null
       };
       localStorage.setItem('orderDraft', JSON.stringify(draft));
-      showToast('Saved as draft');
+      alert('Saved draft');
     }
 
-    function clearForm(){
-      if(!confirm('Clear the form?')) return;
-      document.querySelectorAll('#customer-details input, #customer-details textarea, #order-details input, #order-details textarea, #order-details select').forEach(i=>i.value='');
-      document.querySelectorAll('#packaging input').forEach(i=>i.checked=false);
-      document.getElementById('label-preview').querySelectorAll('span').forEach(s=>s.innerText='-');
-      document.getElementById('order-id').value='';
-      showToast('Form cleared');
+    // Simple pincode -> area lookup for demo autopopulate
+    const pincodeMap = {
+      '110001': 'Connaught Place, New Delhi',
+      '560001': 'Bengaluru GPO, Bangalore',
+      '400001': 'Fort, Mumbai'
+    };
+
+    const pincodeInput = document.getElementById('cust-pincode');
+    if(pincodeInput){
+      pincodeInput.addEventListener('input', function(){
+        const v = this.value.trim();
+        if(v.length >= 6 && pincodeMap[v]){
+          const addrEl = document.getElementById('cust-address');
+          // only auto-fill if address is empty or looks like a previous suggestion
+          if(addrEl && (!addrEl.value || addrEl.value.trim().length < 10)){
+            addrEl.value = pincodeMap[v] + ', ' + addrEl.value;
+          }
+        }
+      });
     }
 
-    // Small reusable toast (keeps page consistent with app.js style)
-    function showToast(msg){
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      toast.innerText = msg;
-      document.body.appendChild(toast);
-      setTimeout(()=> toast.remove(),1500);
-    }
-
-    // If a product was selected via "Buy Now", prefill product fields
+    // Prefill product(s) and buyer info if available
     document.addEventListener('DOMContentLoaded', function(){
       try{
-        const bp = localStorage.getItem('buyProduct');
-        if(bp){
-          const p = JSON.parse(bp);
-          if(p.name) document.getElementById('product-name').value = p.name;
-          if(p.price !== undefined) document.getElementById('price').value = p.price;
-          if(p.quantity !== undefined) document.getElementById('quantity').value = p.quantity;
-          // Keep the buyProduct in storage until order is generated; user may edit qty/price
+        // Prefer buyCart (multi-item) when present
+        const bc = JSON.parse(localStorage.getItem('buyCart')||'null');
+        if(bc && Array.isArray(bc) && bc.length){
+          // render items list
+          const itemsEl = document.getElementById('cart-items');
+          itemsEl.innerHTML = '<h4 style="margin:6px 0">Items in cart</h4>';
+          let total = 0; let qty = 0;
+          const ul = document.createElement('div');
+          ul.style.display = 'grid'; ul.style.gap = '8px';
+          bc.forEach(it => {
+            const row = document.createElement('div');
+            row.style.display = 'flex'; row.style.justifyContent = 'space-between'; row.style.alignItems = 'center';
+            row.innerHTML = `<div style="font-weight:700">${it.name}</div><div class="muted">₹${fmt(it.price)} x ${it.quantity}</div>`;
+            ul.appendChild(row);
+            total += (Number(it.price)||0) * (Number(it.quantity)||1);
+            qty += Number(it.quantity)||1;
+          });
+          itemsEl.appendChild(ul);
+          document.getElementById('prod-name').innerText = 'Cart — '+bc.length+' items';
+          document.getElementById('prod-desc').innerText = 'Review items and enter shipping details to place a single order for the cart.';
+          if(bc[0] && (bc[0].image || bc[0].img)) document.getElementById('prod-img').src = (bc[0].image || bc[0].img);
+          document.getElementById('prod-price').innerText = fmt(total);
+          document.getElementById('prod-price').dataset.value = total;
+        } else {
+          // Product from storage (single buy) fallback
+          const bp = localStorage.getItem('buyProduct');
+          if(bp){ const p = JSON.parse(bp); document.getElementById('prod-name').innerText = p.name||'Product name'; document.getElementById('prod-price').innerText = fmt(p.price||0); document.getElementById('prod-price').dataset.value = p.price||0; if(p.desc) document.getElementById('prod-desc').innerText = p.desc; if(p.img || p.image) document.getElementById('prod-img').src = (p.img || p.image); if(p.quantity) document.getElementById('quantity').value = p.quantity; }
         }
-      }catch(e){ console.error('Error reading buyProduct', e); }
+
+        // draft or user info
+        const draft = JSON.parse(localStorage.getItem('orderDraft')||'null');
+        if(draft){ if(draft.name) document.getElementById('cust-name').value = draft.name; if(draft.phone) document.getElementById('cust-mobile').value = draft.phone; if(draft.address) document.getElementById('cust-address').value = draft.address; if(draft.qty) document.getElementById('quantity').value = draft.qty; }
+
+        // default price dataset if none
+        if(!document.getElementById('prod-price').dataset.value) document.getElementById('prod-price').dataset.value = Number(document.getElementById('prod-price').innerText||0);
+      }catch(e){ console.error(e); }
+      updateSummary();
+      // prepare orders panel
+      renderOrders();
     });
 
-    // Remove buyProduct after order generation so it won't prefill future orders
-    const origGenerateOrder = generateOrder;
-    generateOrder = function(){
-      origGenerateOrder();
-      try{ localStorage.removeItem('buyProduct'); }catch(e){ }
+    function toggleOrdersPanel(){
+      const panel = document.getElementById('orders-panel');
+      if(!panel) return;
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+      if(panel.style.display === 'block') renderOrders();
+    }
+
+    // Re-render orders as user types in search
+    document.addEventListener('input', function(e){
+      if(e.target && e.target.id === 'orders-search') renderOrders();
+    });
+
+    function renderOrders(){
+      const listEl = document.getElementById('orders-list');
+      if(!listEl) return;
+      const allOrders = JSON.parse(localStorage.getItem('orders')||'[]').slice().reverse();
+      const query = (document.getElementById('orders-search')?.value||'').trim().toLowerCase();
+      let orders = allOrders;
+      if(query){
+        orders = allOrders.filter(o => {
+          const id = (o.id||'').toLowerCase();
+          const product = ((o.product || (o.items && o.items.map(it=>it.name).join(', ')))||'').toLowerCase();
+          const name = ((o.customer && o.customer.name) || '').toLowerCase();
+          const phone = ((o.customer && o.customer.phone) || '').toLowerCase();
+          const tracking = (o.trackingId||'').toLowerCase();
+          return id.includes(query) || product.includes(query) || name.includes(query) || phone.includes(query) || tracking.includes(query);
+        });
+      }
+      if(orders.length === 0){ listEl.innerHTML = '<div class="muted">No orders match your search.</div>'; return; }
+
+      listEl.innerHTML = '';
+      orders.forEach(o => {
+        const item = document.createElement('div');
+        item.style.padding = '8px';
+        item.style.borderBottom = '1px solid #eef2f7';
+        item.style.display = 'flex';
+        item.style.justifyContent = 'space-between';
+        item.style.alignItems = 'center';
+
+        const left = document.createElement('div');
+        left.style.display = 'flex'; left.style.gap = '10px'; left.style.alignItems = 'center';
+        // thumbnail
+        const thumb = document.createElement('img');
+        thumb.style.width = '56px'; thumb.style.height = '56px'; thumb.style.objectFit = 'cover'; thumb.style.borderRadius = '6px';
+        if(o.items && o.items.length){ thumb.src = o.items[0].image || ''; } else { thumb.src = o.productImage || ''; }
+        thumb.onerror = ()=> thumb.style.display = 'none';
+
+        const productSummary = document.createElement('div');
+        const prodText = o.product ? (o.product+' — ₹'+(Number(o.price||o.total||0).toFixed(2))) : ((o.items && o.items.map(it=>it.name+' x'+it.qty).join(', ')) || '');
+        productSummary.innerHTML = '<div style="font-weight:700">'+o.id+' <span style="font-size:12px; color:#6b7280; font-weight:600; margin-left:8px;">'+(o.status||'')+'</span></div><div class="muted">'+prodText+'</div>';
+
+        left.appendChild(thumb);
+        left.appendChild(productSummary);
+
+        const right = document.createElement('div');
+        right.style.display = 'flex';
+        right.style.gap = '8px';
+
+        const detailsBtn = document.createElement('button');
+        detailsBtn.className = 'btn';
+        detailsBtn.style.border = '1px solid #d1d5db';
+        detailsBtn.innerText = 'Details';
+        detailsBtn.onclick = ()=> showOrderDetails(o.id);
+
+        const cancelBtn = document.createElement('button');
+        cancelBtn.className = 'btn';
+        if(o.status === 'cancelled'){
+          cancelBtn.style.background = '#9ca3af';
+          cancelBtn.style.color = '#fff';
+          cancelBtn.innerText = 'Cancelled';
+          cancelBtn.disabled = true;
+        } else {
+          cancelBtn.style.background = '#ef4444';
+          cancelBtn.style.color = '#fff';
+          cancelBtn.innerText = 'Cancel';
+          cancelBtn.onclick = ()=> cancelOrder(o.id);
+        }
+
+        right.appendChild(detailsBtn);
+        right.appendChild(cancelBtn);
+
+        item.appendChild(left);
+        item.appendChild(right);
+        listEl.appendChild(item);
+      });
+    }
+
+    function showOrderDetails(id){
+      const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+      const o = orders.find(x => x.id === id);
+      if(!o) { alert('Order not found'); return; }
+      // build modal
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed'; overlay.style.left = 0; overlay.style.top = 0; overlay.style.right = 0; overlay.style.bottom = 0;
+      overlay.style.background = 'rgba(0,0,0,0.5)'; overlay.style.display = 'flex'; overlay.style.alignItems = 'center'; overlay.style.justifyContent = 'center';
+      overlay.style.zIndex = 9999;
+
+      const box = document.createElement('div');
+      box.style.width = '720px'; box.style.maxWidth = '95%'; box.style.background = '#fff'; box.style.borderRadius = '10px'; box.style.padding = '18px'; box.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+
+      const title = document.createElement('h3'); title.innerText = 'Order ' + o.id; title.style.marginTop = '0';
+      box.appendChild(title);
+
+      const status = document.createElement('div'); status.innerHTML = '<strong>Status:</strong> ' + (o.status||'placed'); status.style.marginBottom = '8px';
+      box.appendChild(status);
+
+      const content = document.createElement('div');
+
+      if(o.items && o.items.length){
+        const itemList = document.createElement('div'); itemList.style.display = 'grid'; itemList.style.gap = '10px';
+        o.items.forEach(it => {
+          const r = document.createElement('div'); r.style.display = 'flex'; r.style.alignItems = 'center'; r.style.gap = '12px';
+          const img = document.createElement('img'); img.src = it.image || ''; img.alt = it.name; img.style.width = '64px'; img.style.height = '64px'; img.style.objectFit = 'cover'; img.style.borderRadius = '6px'; img.onerror = ()=> img.style.display='none';
+          const meta = document.createElement('div'); meta.innerHTML = '<div style="font-weight:700">'+it.name+'</div><div class="muted">₹'+fmt(it.price)+' x '+it.qty+' = ₹'+fmt(it.total)+'</div>';
+          r.appendChild(img); r.appendChild(meta);
+          itemList.appendChild(r);
+        });
+        content.appendChild(itemList);
+        const tot = document.createElement('div'); tot.style.marginTop = '10px'; tot.style.fontWeight = '700'; tot.innerText = 'Total: ₹' + fmt(o.total);
+        content.appendChild(tot);
+      } else {
+        const r = document.createElement('div'); r.style.display = 'flex'; r.style.alignItems = 'center'; r.style.gap = '12px';
+        const img = document.createElement('img'); img.src = o.productImage || ''; img.alt = o.product || ''; img.style.width = '96px'; img.style.height = '96px'; img.style.objectFit = 'cover'; img.style.borderRadius = '6px'; img.onerror = ()=> img.style.display='none';
+        const meta = document.createElement('div'); meta.innerHTML = '<div style="font-weight:700">'+(o.product||'')+'</div><div class="muted">₹'+fmt(o.price || o.total||0) + ' x '+(o.qty||1)+'</div>';
+        r.appendChild(img); r.appendChild(meta);
+        content.appendChild(r);
+      }
+
+      const cust = document.createElement('div'); cust.style.marginTop = '12px'; cust.innerHTML = '<div style="font-weight:700">Customer</div><div>'+ (o.customer?.name||'') + ' — ' + (o.customer?.phone||'') + '</div><div class="muted">'+(o.customer?.address||'')+' ('+(o.customer?.pincode||'')+')</div>';
+      content.appendChild(cust);
+
+      const trace = document.createElement('div'); trace.style.marginTop = '8px'; trace.innerHTML = '<div class="muted">Placed: '+(new Date(o.createdAt).toLocaleString())+'</div><div class="muted">Tracking: '+(o.trackingId||'')+'</div>';
+      content.appendChild(trace);
+
+      box.appendChild(content);
+
+      const closeRow = document.createElement('div'); closeRow.style.display = 'flex'; closeRow.style.justifyContent = 'flex-end'; closeRow.style.marginTop = '12px';
+      const closeBtn = document.createElement('button'); closeBtn.className = 'btn'; closeBtn.innerText = 'Close'; closeBtn.onclick = ()=> overlay.remove();
+      closeRow.appendChild(closeBtn);
+      box.appendChild(closeRow);
+
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+    }
+
+    function cancelOrder(id){
+      if(!confirm('Cancel order '+id+'?')) return;
+      const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+      const idx = orders.findIndex(x => x.id === id);
+      if(idx === -1) { alert('Order not found'); return; }
+      // mark as cancelled instead of deleting
+      orders[idx].status = 'cancelled';
+      orders[idx].cancelledAt = new Date().toISOString();
+      localStorage.setItem('orders', JSON.stringify(orders));
+      renderOrders();
+      const res = document.getElementById('order-result'); if(res) res.innerHTML = '<div style="color:#b91c1c; font-weight:700">Order '+id+' marked cancelled</div>';
     }
   </script>
 </body>

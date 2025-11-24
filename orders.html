@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Your Orders — UglyFresh</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main{ max-width:1000px; margin:30px auto; padding:18px; background:#fff; border-radius:10px }
+    h1{ color:#065f46 }
+    .muted{ color:#6b7280 }
+    .orders-list { display:flex; flex-direction:column; gap:10px }
+    .order-item{ padding:12px; border:1px solid #eef2f7; border-radius:8px; display:flex; justify-content:space-between; align-items:center }
+    .order-meta{ display:flex; gap:12px; align-items:center }
+    .order-actions button{ margin-left:8px }
+    .search-row{ display:flex; gap:8px; margin-bottom:12px }
+  </style>
+</head>
+<body>
+  <nav>
+    <h1>🌱 UglyFresh</h1>
+    <div class="nav-buttons">
+      <a href="index.html" class="cart-btn">Home</a>
+      <a href="cart.html" class="cart-btn">Cart</a>
+    </div>
+  </nav>
+  <main>
+    <h1>Your Orders</h1>
+    <p class="muted">View and search your placed orders. This page reads orders stored in browser localStorage (demo).</p>
+
+    <div class="search-row">
+      <input id="orders-search" type="text" placeholder="Search by order id, product, customer, phone" style="flex:1; padding:8px; border-radius:6px; border:1px solid #e5e7eb">
+      <button class="btn btn-ghost" onclick="document.getElementById('orders-search').value=''; renderOrders();">Clear</button>
+    </div>
+
+    <div id="orders-list" class="orders-list"></div>
+  </main>
+
+  <script>
+    function fmt(n){ return Number(n||0).toFixed(2); }
+    function renderOrders(){
+      const el = document.getElementById('orders-list'); if(!el) return;
+      const all = JSON.parse(localStorage.getItem('orders')||'[]').slice().reverse();
+      const q = (document.getElementById('orders-search')?.value||'').trim().toLowerCase();
+      let list = all;
+      if(q){ list = all.filter(o => { const id=(o.id||'').toLowerCase(); const p=(o.product||'').toLowerCase(); const name=((o.customer&&o.customer.name)||'').toLowerCase(); const phone=((o.customer&&o.customer.phone)||'').toLowerCase(); const t=(o.trackingId||'').toLowerCase(); return id.includes(q)||p.includes(q)||name.includes(q)||phone.includes(q)||t.includes(q); }); }
+      if(list.length===0){ el.innerHTML = '<div class="muted">No orders found.</div>'; return; }
+      el.innerHTML = '';
+      list.forEach(o=>{
+        const item = document.createElement('div'); item.className='order-item';
+        const left = document.createElement('div'); left.className='order-meta';
+        left.style.alignItems = 'center';
+
+        // thumbnail
+        const thumb = document.createElement('img');
+        thumb.style.width = '56px'; thumb.style.height = '56px'; thumb.style.objectFit = 'cover'; thumb.style.borderRadius = '6px'; thumb.style.marginRight = '8px';
+        // try item image, then global productImages map, then productImage
+        try{
+          const productImages = JSON.parse(localStorage.getItem('productImages')||'{}');
+          if(o.items && o.items.length){
+            thumb.src = o.items[0].image || productImages[o.items[0].id] || '';
+          } else {
+            // single-product order
+            const maybeId = o.productId || null;
+            thumb.src = o.productImage || (maybeId ? (productImages[maybeId]||'') : '') || '';
+          }
+        }catch(e){
+          if(o.items && o.items.length) thumb.src = o.items[0].image || '';
+          else thumb.src = o.productImage || '';
+        }
+        thumb.onerror = ()=> thumb.style.display = 'none';
+
+        const meta = document.createElement('div');
+        const prodText = o.product ? (o.product+' × '+(o.qty||1)) : ((o.items && o.items.map(it=>it.name+' x'+it.qty).join(', ')) || '');
+        meta.innerHTML = `<div style="font-weight:700">${o.id} <span style="font-size:12px; color:#6b7280; font-weight:600; margin-left:8px;">${o.status||''}</span></div><div class="muted">${prodText} — ₹${fmt(o.total)}</div>`;
+
+        left.appendChild(thumb);
+        left.appendChild(meta);
+
+        const right = document.createElement('div'); right.className='order-actions';
+        const details = document.createElement('button'); details.className='btn btn-ghost'; details.innerText='Details'; details.onclick = ()=> showOrderDetails(o.id);
+        const cancel = document.createElement('button'); cancel.className='btn';
+        if(o.status === 'cancelled'){
+          cancel.style.background = '#9ca3af'; cancel.style.color = '#fff'; cancel.innerText = 'Cancelled'; cancel.disabled = true;
+        } else {
+          cancel.style.background='#ef4444'; cancel.style.color='#fff'; cancel.innerText='Cancel'; cancel.onclick = ()=> cancelOrder(o.id);
+        }
+        right.appendChild(details); right.appendChild(cancel);
+        item.appendChild(left); item.appendChild(right); el.appendChild(item);
+      });
+    }
+
+    function showOrderDetails(id){
+      const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+      const o = orders.find(x=>x.id===id);
+      if(!o){ alert('Order not found'); return; }
+      // build modal with images
+      const overlay = document.createElement('div'); overlay.style.position='fixed'; overlay.style.left=0; overlay.style.top=0; overlay.style.right=0; overlay.style.bottom=0; overlay.style.background='rgba(0,0,0,0.5)'; overlay.style.display='flex'; overlay.style.alignItems='center'; overlay.style.justifyContent='center'; overlay.style.zIndex=9999;
+      const box = document.createElement('div'); box.style.width='720px'; box.style.maxWidth='95%'; box.style.background='#fff'; box.style.borderRadius='10px'; box.style.padding='18px'; box.style.boxShadow='0 10px 30px rgba(0,0,0,0.2)';
+      const title = document.createElement('h3'); title.innerText = 'Order ' + o.id; title.style.marginTop='0'; box.appendChild(title);
+      const status = document.createElement('div'); status.innerHTML = '<strong>Status:</strong> ' + (o.status||'placed'); status.style.marginBottom='8px'; box.appendChild(status);
+      const content = document.createElement('div');
+      if(o.items && o.items.length){
+        const itemList = document.createElement('div'); itemList.style.display='grid'; itemList.style.gap='10px';
+        o.items.forEach(it=>{
+          const r = document.createElement('div'); r.style.display='flex'; r.style.alignItems='center'; r.style.gap='12px';
+          const img = document.createElement('img');
+          try{
+            const productImages = JSON.parse(localStorage.getItem('productImages')||'{}');
+            img.src = it.image || productImages[it.id] || '';
+          }catch(e){
+            img.src = it.image || '';
+          }
+          img.alt = it.name; img.style.width='64px'; img.style.height='64px'; img.style.objectFit='cover'; img.style.borderRadius='6px'; img.onerror = ()=> img.style.display='none';
+          const meta = document.createElement('div'); meta.innerHTML = '<div style="font-weight:700">'+it.name+'</div><div class="muted">₹'+fmt(it.price)+' x '+it.qty+' = ₹'+fmt(it.total)+'</div>';
+          r.appendChild(img); r.appendChild(meta); itemList.appendChild(r);
+        });
+        content.appendChild(itemList);
+        const tot = document.createElement('div'); tot.style.marginTop='10px'; tot.style.fontWeight='700'; tot.innerText = 'Total: ₹' + fmt(o.total); content.appendChild(tot);
+      } else {
+        const r = document.createElement('div'); r.style.display='flex'; r.style.alignItems='center'; r.style.gap='12px';
+        const img = document.createElement('img');
+        try{
+          const productImages = JSON.parse(localStorage.getItem('productImages')||'{}');
+          img.src = o.productImage || (o.productId ? (productImages[o.productId]||'') : '');
+        }catch(e){
+          img.src = o.productImage || '';
+        }
+        img.alt = o.product || ''; img.style.width='96px'; img.style.height='96px'; img.style.objectFit='cover'; img.style.borderRadius='6px'; img.onerror = ()=> img.style.display='none';
+        const meta = document.createElement('div'); meta.innerHTML = '<div style="font-weight:700">'+(o.product||'')+'</div><div class="muted">₹'+fmt(o.price || o.total||0) + ' x '+(o.qty||1)+'</div>';
+        r.appendChild(img); r.appendChild(meta); content.appendChild(r);
+      }
+      const cust = document.createElement('div'); cust.style.marginTop='12px'; cust.innerHTML = '<div style="font-weight:700">Customer</div><div>'+ (o.customer?.name||'') + ' — ' + (o.customer?.phone||'') + '</div><div class="muted">'+(o.customer?.address||'')+' ('+(o.customer?.pincode||'')+')</div>'; content.appendChild(cust);
+      const trace = document.createElement('div'); trace.style.marginTop='8px'; trace.innerHTML = '<div class="muted">Placed: '+(new Date(o.createdAt).toLocaleString())+'</div><div class="muted">Tracking: '+(o.trackingId||'')+'</div>'; content.appendChild(trace);
+      box.appendChild(content);
+      const closeRow = document.createElement('div'); closeRow.style.display='flex'; closeRow.style.justifyContent='flex-end'; closeRow.style.marginTop='12px'; const closeBtn = document.createElement('button'); closeBtn.className='btn'; closeBtn.innerText='Close'; closeBtn.onclick = ()=> overlay.remove(); closeRow.appendChild(closeBtn); box.appendChild(closeRow);
+      overlay.appendChild(box); document.body.appendChild(overlay);
+    }
+
+    function cancelOrder(id){
+      if(!confirm('Cancel order '+id+'?')) return;
+      const orders = JSON.parse(localStorage.getItem('orders')||'[]');
+      const idx = orders.findIndex(x=>x.id===id);
+      if(idx===-1){ alert('Order not found'); return; }
+      orders[idx].status = 'cancelled'; orders[idx].cancelledAt = new Date().toISOString();
+      localStorage.setItem('orders', JSON.stringify(orders)); renderOrders(); alert('Order '+id+' marked cancelled');
+    }
+
+    document.addEventListener('input', (e)=>{ if(e.target && e.target.id==='orders-search') renderOrders(); });
+    document.addEventListener('DOMContentLoaded', renderOrders);
+  </script>
+</body>
+</html>
