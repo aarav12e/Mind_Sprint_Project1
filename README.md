@@ -7,7 +7,7 @@
 <body>
   <h1>UglyFresh - Ugly Produce Marketplace 🍎🥕🍌</h1>
 
-  <p><strong>Live Project Link:</strong> <a href="https://aarav12e.github.io/Mind_Sprint_Project1/" target="_blank">https://aarav12e.github.io/Mind_Sprint_Project1/</a></p>
+  <p><strong>Live Project Link:</strong> <a href="https://aarav12e.github.io/Ugly_Fresh_Website/" target="_blank">https://aarav12e.github.io/Mind_Sprint_Project1/</a></p>
 
   <h2>Project Description</h2>
   <p>UglyFresh is a web-based marketplace for cosmetically imperfect (“ugly”) fruits and vegetables. The goal of this project is to:</p>
